@@ -1,0 +1,148 @@
+{
+  "trade": "hydraulik",
+  "label": "Hydraulik",
+  "description": "wod-kan, c.o., biały montaż",
+  "categories": ["Instalacje", "Biały montaż", "C.O."],
+  "items": [
+    {
+      "key": "punkt_wodkan",
+      "category": "Instalacje",
+      "name": "Punkt wod-kan",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["punkt", "woda i kanalizacja", "podejście"]
+    },
+    {
+      "key": "podejscie_wody",
+      "category": "Instalacje",
+      "name": "Podejście wody",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["woda", "zimna i ciepła"]
+    },
+    {
+      "key": "podejscie_kanalizacji",
+      "category": "Instalacje",
+      "name": "Podejście kanalizacyjne",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["kanalizacja", "odpływ", "kanaliza"]
+    },
+    {
+      "key": "rury",
+      "category": "Instalacje",
+      "name": "Wymiana rur",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["rury", "instalacja", "pex", "miedź"]
+    },
+    {
+      "key": "pion",
+      "category": "Instalacje",
+      "name": "Wymiana pionu",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["pion"]
+    },
+    {
+      "key": "stelaz_wc",
+      "category": "Biały montaż",
+      "name": "Stelaż podtynkowy WC",
+      "offerName": "Montaż stelaża podtynkowego WC",
+      "unit": "kpl",
+      "measure": "count",
+      "tags": ["fixture"],
+      "aliases": ["stelaż", "geberit", "wc podwieszane"]
+    },
+    {
+      "key": "miska_wc",
+      "category": "Biały montaż",
+      "name": "Montaż miski WC",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": ["fixture"],
+      "aliases": ["sedes", "miska"]
+    },
+    {
+      "key": "umywalka",
+      "category": "Biały montaż",
+      "name": "Montaż umywalki z syfonem",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": ["fixture"],
+      "aliases": ["umywalka", "zlew"]
+    },
+    {
+      "key": "bateria",
+      "category": "Biały montaż",
+      "name": "Montaż baterii",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": ["fixture"],
+      "aliases": ["bateria", "kran"]
+    },
+    {
+      "key": "wanna",
+      "category": "Biały montaż",
+      "name": "Montaż wanny",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": ["fixture"],
+      "aliases": ["wanna"]
+    },
+    {
+      "key": "kabina",
+      "category": "Biały montaż",
+      "name": "Montaż kabiny / brodzika",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": ["fixture"],
+      "aliases": ["kabina", "brodzik", "prysznic"]
+    },
+    {
+      "key": "odplyw_liniowy",
+      "category": "Biały montaż",
+      "name": "Odpływ liniowy",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": ["fixture"],
+      "aliases": ["odpływ liniowy", "walk-in"]
+    },
+    {
+      "key": "pralka",
+      "category": "Biały montaż",
+      "name": "Podłączenie pralki / zmywarki",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["pralka", "zmywarka"]
+    },
+    {
+      "key": "grzejnik",
+      "category": "C.O.",
+      "name": "Montaż grzejnika",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["grzejnik", "kaloryfer", "drabinka"]
+    }
+  ]
+}

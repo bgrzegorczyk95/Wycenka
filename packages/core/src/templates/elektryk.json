@@ -1,0 +1,138 @@
+{
+  "trade": "elektryk",
+  "label": "Elektryk",
+  "description": "instalacje, osprzęt, pomiary",
+  "categories": ["Instalacja", "Osprzęt", "Rozdzielnica", "Pomiary i serwis"],
+  "items": [
+    {
+      "key": "instalacja_m2",
+      "category": "Instalacja",
+      "name": "Wymiana instalacji (za m² mieszkania)",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["nowa instalacja", "cała instalacja", "wymiana instalacji"]
+    },
+    {
+      "key": "punkt_elektryczny",
+      "category": "Instalacja",
+      "name": "Punkt elektryczny (gniazdo / łącznik)",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["punkt", "gniazdko", "nowe gniazdo", "łącznik"]
+    },
+    {
+      "key": "punkt_oswietleniowy",
+      "category": "Instalacja",
+      "name": "Punkt oświetleniowy",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["punkt świetlny", "wypust", "światło"]
+    },
+    {
+      "key": "bruzdowanie",
+      "category": "Instalacja",
+      "name": "Bruzdowanie i zatynkowanie bruzd",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["bruzdy", "kucie pod kable"]
+    },
+    {
+      "key": "przewod",
+      "category": "Instalacja",
+      "name": "Ułożenie przewodu",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["kabel", "przewód", "peszel"]
+    },
+    {
+      "key": "gniazdo_400v",
+      "category": "Instalacja",
+      "name": "Gniazdo siłowe 400 V",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["siła", "trójfaza", "400"]
+    },
+    {
+      "key": "wymiana_osprzetu",
+      "category": "Osprzęt",
+      "name": "Wymiana osprzętu (gniazdo, łącznik)",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["wymiana gniazdek", "wymiana kontaktów"]
+    },
+    {
+      "key": "montaz_lampy",
+      "category": "Osprzęt",
+      "name": "Montaż lampy / oprawy",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["lampa", "żyrandol", "oczko", "halogen"]
+    },
+    {
+      "key": "podlaczenie_agd",
+      "category": "Osprzęt",
+      "name": "Podłączenie płyty / piekarnika",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["indukcja", "płyta", "piekarnik"]
+    },
+    {
+      "key": "rozdzielnica",
+      "category": "Rozdzielnica",
+      "name": "Rozdzielnica – montaż i podłączenie",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["skrzynka", "tablica", "rozdzielnia"]
+    },
+    {
+      "key": "zabezpieczenie",
+      "category": "Rozdzielnica",
+      "name": "Zabezpieczenie (wyłącznik, różnicówka)",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["eska", "różnicówka", "bezpiecznik"]
+    },
+    {
+      "key": "pomiary",
+      "category": "Pomiary i serwis",
+      "name": "Pomiary instalacji z protokołem",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["pomiary", "protokół", "odbiór"]
+    },
+    {
+      "key": "diagnostyka",
+      "category": "Pomiary i serwis",
+      "name": "Diagnostyka / usuwanie awarii",
+      "offerName": null,
+      "unit": "h",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["awaria", "szukanie zwarcia", "godzina"]
+    }
+  ]
+}

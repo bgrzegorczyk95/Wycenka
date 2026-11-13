@@ -1,0 +1,118 @@
+{
+  "trade": "podlogi",
+  "label": "Podłogi",
+  "description": "panele, deski, wylewki",
+  "categories": ["Przygotowanie", "Układanie", "Renowacja", "Wykończenie"],
+  "items": [
+    {
+      "key": "demontaz",
+      "category": "Przygotowanie",
+      "name": "Demontaż starej podłogi",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["zerwanie", "stara podłoga"]
+    },
+    {
+      "key": "gruntowanie",
+      "category": "Przygotowanie",
+      "name": "Gruntowanie podłoża",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["grunt"]
+    },
+    {
+      "key": "wylewka",
+      "category": "Przygotowanie",
+      "name": "Wylewka samopoziomująca",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["wylewka", "samopoziom", "wyrównanie"]
+    },
+    {
+      "key": "podklad",
+      "category": "Układanie",
+      "name": "Układanie podkładu",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["podkład", "pianka"]
+    },
+    {
+      "key": "panele",
+      "category": "Układanie",
+      "name": "Układanie paneli",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["panele", "panele winylowe", "laminat"]
+    },
+    {
+      "key": "deska",
+      "category": "Układanie",
+      "name": "Układanie deski / parkietu",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["deska", "parkiet", "jodełka"]
+    },
+    {
+      "key": "wykladzina",
+      "category": "Układanie",
+      "name": "Układanie wykładziny / PCV",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["wykładzina", "pcv", "linoleum"]
+    },
+    {
+      "key": "cyklinowanie",
+      "category": "Renowacja",
+      "name": "Cyklinowanie",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["cyklinowanie", "szlifowanie"]
+    },
+    {
+      "key": "lakierowanie",
+      "category": "Renowacja",
+      "name": "Lakierowanie / olejowanie",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["lakier", "olej", "trzy warstwy"]
+    },
+    {
+      "key": "listwy",
+      "category": "Wykończenie",
+      "name": "Listwy przypodłogowe",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "perimeter",
+      "tags": ["trim"],
+      "aliases": ["listwy", "cokoły"]
+    },
+    {
+      "key": "progi",
+      "category": "Wykończenie",
+      "name": "Listwy progowe",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["próg", "przejście", "listwa progowa"]
+    }
+  ]
+}

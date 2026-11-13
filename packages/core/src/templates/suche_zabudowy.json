@@ -1,0 +1,108 @@
+{
+  "trade": "suche_zabudowy",
+  "label": "Suche zabudowy",
+  "description": "G-K, sufity, ścianki",
+  "categories": ["Sufity", "Ściany", "Wykończenie"],
+  "items": [
+    {
+      "key": "sufit_gk",
+      "category": "Sufity",
+      "name": "Sufit podwieszany G-K",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "ceiling",
+      "tags": ["ceiling"],
+      "aliases": ["sufit podwieszany", "karton-gips", "regips"]
+    },
+    {
+      "key": "sufit_led",
+      "category": "Sufity",
+      "name": "Sufit dwupoziomowy / listwa LED",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["dwupoziomowy", "led", "podświetlenie"]
+    },
+    {
+      "key": "oprawa_otwor",
+      "category": "Sufity",
+      "name": "Otwór pod oprawę",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["oczko", "otwór", "halogen"]
+    },
+    {
+      "key": "scianka_gk",
+      "category": "Ściany",
+      "name": "Ścianka działowa G-K",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["ścianka", "działówka", "przepierzenie"]
+    },
+    {
+      "key": "zabudowa_skosow",
+      "category": "Ściany",
+      "name": "Zabudowa skosów / poddasza",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["skosy", "poddasze"]
+    },
+    {
+      "key": "zabudowa_pionu",
+      "category": "Ściany",
+      "name": "Zabudowa pionu / rur",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["pion", "rury", "obudowa"]
+    },
+    {
+      "key": "welna",
+      "category": "Ściany",
+      "name": "Ocieplenie wełną w zabudowie",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["wełna", "izolacja", "ocieplenie"]
+    },
+    {
+      "key": "szpachlowanie_gk",
+      "category": "Wykończenie",
+      "name": "Szpachlowanie i spoinowanie G-K",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["spoinowanie", "taśmowanie", "szpachla"]
+    },
+    {
+      "key": "narozniki",
+      "category": "Wykończenie",
+      "name": "Narożniki",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["narożniki", "kątowniki"]
+    },
+    {
+      "key": "rewizja",
+      "category": "Wykończenie",
+      "name": "Otwór rewizyjny",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["rewizja", "klapa rewizyjna"]
+    }
+  ]
+}

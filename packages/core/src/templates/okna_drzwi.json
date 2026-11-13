@@ -1,0 +1,118 @@
+{
+  "trade": "okna_drzwi",
+  "label": "Okna i drzwi",
+  "description": "montaż, regulacja, parapety",
+  "categories": ["Okna", "Drzwi", "Wykończenie", "Serwis"],
+  "items": [
+    {
+      "key": "demontaz_okna",
+      "category": "Okna",
+      "name": "Demontaż starego okna",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["wyjęcie okna", "demontaż"]
+    },
+    {
+      "key": "montaz_okna",
+      "category": "Okna",
+      "name": "Montaż okna",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["okno", "okna", "balkonowe"]
+    },
+    {
+      "key": "montaz_cieply",
+      "category": "Okna",
+      "name": "Montaż ciepły (taśmy)",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["ciepły montaż", "taśmy", "warstwowy"]
+    },
+    {
+      "key": "drzwi_wewnetrzne",
+      "category": "Drzwi",
+      "name": "Montaż drzwi wewnętrznych z ościeżnicą",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["drzwi", "ościeżnica", "futryna"]
+    },
+    {
+      "key": "drzwi_zewnetrzne",
+      "category": "Drzwi",
+      "name": "Montaż drzwi zewnętrznych",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["drzwi wejściowe", "zewnętrzne"]
+    },
+    {
+      "key": "parapet_wew",
+      "category": "Wykończenie",
+      "name": "Montaż parapetu wewnętrznego",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["parapet", "konglomerat"]
+    },
+    {
+      "key": "parapet_zew",
+      "category": "Wykończenie",
+      "name": "Montaż parapetu zewnętrznego",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["parapet zewnętrzny", "blacha"]
+    },
+    {
+      "key": "glify",
+      "category": "Wykończenie",
+      "name": "Obróbka glifów",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["glify", "ościeża", "obróbka"]
+    },
+    {
+      "key": "roleta",
+      "category": "Wykończenie",
+      "name": "Montaż rolety",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["roleta", "żaluzja"]
+    },
+    {
+      "key": "moskitiera",
+      "category": "Wykończenie",
+      "name": "Montaż moskitiery",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["moskitiera", "siatka"]
+    },
+    {
+      "key": "regulacja",
+      "category": "Serwis",
+      "name": "Regulacja okna / drzwi",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["regulacja", "nie domyka", "przestawienie na zimę"]
+    }
+  ]
+}

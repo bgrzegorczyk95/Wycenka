@@ -1,0 +1,148 @@
+{
+  "trade": "malarz",
+  "label": "Malarz",
+  "description": "gładzie, malowanie, tapety",
+  "categories": ["Przygotowanie", "Gładzie", "Malowanie", "Wykończenie"],
+  "items": [
+    {
+      "key": "zabezpieczenie",
+      "category": "Przygotowanie",
+      "name": "Zabezpieczenie podłóg i mebli",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["folia", "zabezpieczenie", "oklejenie"]
+    },
+    {
+      "key": "zerwanie_tapet",
+      "category": "Przygotowanie",
+      "name": "Zerwanie starych tapet",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["zrywanie tapet", "zdjęcie tapety"]
+    },
+    {
+      "key": "skrobanie",
+      "category": "Przygotowanie",
+      "name": "Skrobanie starej farby",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["zeskrobanie", "łuszcząca się farba"]
+    },
+    {
+      "key": "gruntowanie",
+      "category": "Przygotowanie",
+      "name": "Gruntowanie",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["grunt", "zagruntować"]
+    },
+    {
+      "key": "naprawa_pekniec",
+      "category": "Przygotowanie",
+      "name": "Naprawa pęknięć i ubytków",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["pęknięcia", "rysy", "ubytki", "siatka"]
+    },
+    {
+      "key": "gladz_sciany",
+      "category": "Gładzie",
+      "name": "Gładź gipsowa – ściany",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["gładź", "szpachlowanie ścian"]
+    },
+    {
+      "key": "gladz_sufit",
+      "category": "Gładzie",
+      "name": "Gładź gipsowa – sufit",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "ceiling",
+      "tags": ["ceiling"],
+      "aliases": ["gładź na suficie", "szpachlowanie sufitu"]
+    },
+    {
+      "key": "narozniki",
+      "category": "Gładzie",
+      "name": "Narożniki aluminiowe",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["narożniki", "kątowniki"]
+    },
+    {
+      "key": "malowanie_scian",
+      "category": "Malowanie",
+      "name": "Malowanie ścian (2 warstwy)",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["malowanie", "dwa razy", "na biało", "na kolor"]
+    },
+    {
+      "key": "malowanie_sufitu",
+      "category": "Malowanie",
+      "name": "Malowanie sufitu (2 warstwy)",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "ceiling",
+      "tags": ["ceiling"],
+      "aliases": ["sufit", "malowanie sufitu"]
+    },
+    {
+      "key": "tapetowanie",
+      "category": "Malowanie",
+      "name": "Tapetowanie",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["tapeta", "tapety", "fototapeta"]
+    },
+    {
+      "key": "malowanie_drzwi",
+      "category": "Wykończenie",
+      "name": "Malowanie drzwi",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["drzwi", "skrzydło"]
+    },
+    {
+      "key": "malowanie_kaloryfera",
+      "category": "Wykończenie",
+      "name": "Malowanie kaloryfera",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["kaloryfer", "grzejnik"]
+    },
+    {
+      "key": "listwy_sufitowe",
+      "category": "Wykończenie",
+      "name": "Listwy sufitowe",
+      "offerName": null,
+      "unit": "mb",
+      "measure": "perimeter",
+      "tags": ["trim"],
+      "aliases": ["sztukateria", "listwa przysufitowa"]
+    }
+  ]
+}

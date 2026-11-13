@@ -1,0 +1,158 @@
+{
+  "trade": "ekipa_remontowa",
+  "label": "Ekipa remontowa",
+  "description": "kompleksowe remonty",
+  "categories": ["Rozbiórki", "Ściany i sufity", "Podłogi i płytki", "Instalacje", "Wykończenie"],
+  "items": [
+    {
+      "key": "wywoz_gruzu",
+      "category": "Rozbiórki",
+      "name": "Wywóz gruzu",
+      "offerName": null,
+      "unit": "kpl",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["gruz", "kontener", "wywóz"]
+    },
+    {
+      "key": "skucie_plytek",
+      "category": "Rozbiórki",
+      "name": "Skucie płytek",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls_floor",
+      "tags": ["wall", "floor"],
+      "aliases": ["skuwanie", "skucie glazury"]
+    },
+    {
+      "key": "wyburzenie",
+      "category": "Rozbiórki",
+      "name": "Wyburzenie ściany",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["wyburzenie", "rozbiórka ściany"]
+    },
+    {
+      "key": "murowanie",
+      "category": "Ściany i sufity",
+      "name": "Murowanie ściany",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "manual",
+      "tags": [],
+      "aliases": ["bloczki", "ytong", "nowa ściana"]
+    },
+    {
+      "key": "tynkowanie",
+      "category": "Ściany i sufity",
+      "name": "Tynkowanie",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["tynk", "tynki"]
+    },
+    {
+      "key": "gladz",
+      "category": "Ściany i sufity",
+      "name": "Gładź gipsowa",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["gładź", "szpachlowanie"]
+    },
+    {
+      "key": "malowanie_scian",
+      "category": "Ściany i sufity",
+      "name": "Malowanie ścian",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall"],
+      "aliases": ["malowanie"]
+    },
+    {
+      "key": "malowanie_sufitu",
+      "category": "Ściany i sufity",
+      "name": "Malowanie sufitu",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "ceiling",
+      "tags": ["ceiling"],
+      "aliases": ["sufit"]
+    },
+    {
+      "key": "sufit_gk",
+      "category": "Ściany i sufity",
+      "name": "Sufit podwieszany G-K",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "ceiling",
+      "tags": ["ceiling"],
+      "aliases": ["sufit podwieszany", "regips"]
+    },
+    {
+      "key": "plytki_sciany",
+      "category": "Podłogi i płytki",
+      "name": "Płytki – ściany",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "walls",
+      "tags": ["wall", "tiles", "mosaic-eligible"],
+      "aliases": ["glazura", "kafelki"]
+    },
+    {
+      "key": "plytki_podloga",
+      "category": "Podłogi i płytki",
+      "name": "Płytki – podłoga",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor", "tiles", "mosaic-eligible"],
+      "aliases": ["terakota", "posadzka"]
+    },
+    {
+      "key": "panele",
+      "category": "Podłogi i płytki",
+      "name": "Panele z listwami",
+      "offerName": null,
+      "unit": "m2",
+      "measure": "floor",
+      "tags": ["floor"],
+      "aliases": ["panele", "podłoga"]
+    },
+    {
+      "key": "punkt_elektryczny",
+      "category": "Instalacje",
+      "name": "Punkt elektryczny",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["gniazdko", "punkt"]
+    },
+    {
+      "key": "punkt_wodkan",
+      "category": "Instalacje",
+      "name": "Punkt wod-kan",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["woda", "kanalizacja"]
+    },
+    {
+      "key": "drzwi",
+      "category": "Wykończenie",
+      "name": "Montaż drzwi wewnętrznych",
+      "offerName": null,
+      "unit": "szt",
+      "measure": "count",
+      "tags": [],
+      "aliases": ["drzwi", "ościeżnica"]
+    }
+  ]
+}
