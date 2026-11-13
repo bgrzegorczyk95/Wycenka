@@ -76,6 +76,7 @@ describe('formatQty', () => {
     [2000, 'h', '2 h'],
     [1250, 'szt', '1,25 szt.'],
     [1234567, 'm2', '1 234,6 m²'],
+    [-1500, 'h', '-1,5 h'],
   ] as const)('%i %s → %s', (milli, unit, expected) => {
     expect(formatQty(milli, unit).replaceAll(NBSP, ' ')).toBe(expected);
   });

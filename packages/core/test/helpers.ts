@@ -4,7 +4,7 @@ import type { Extraction, ExtractionItem, ExtractionRoom, PriceListItem, Pricing
 
 export { fixture };
 
-export const NBSP = ' ';
+export const NBSP = '\u00A0';
 
 /** Fixture strings use regular spaces; the app formats with non-breaking spaces. */
 export const plain = (s: string): string => s.replaceAll(NBSP, ' ');
