@@ -28,6 +28,7 @@ describe('computeRoomGeometry', () => {
       wallsQtyMilli: 24400,
       floorQtyMilli: 6000,
       perimeterTrimQtyMilli: 9200,
+      openings: [{ kind: 'door', widthMm: 800, heightMm: 2000 }],
       assumedDefaultDoor: true,
     });
   });
