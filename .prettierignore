@@ -1,0 +1,8 @@
+pnpm-lock.yaml
+docs/
+mockups/
+*.md
+packages/db/migrations/
+.wrangler/
+dist/
+coverage/

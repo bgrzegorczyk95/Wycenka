@@ -1,0 +1,33 @@
+{
+  "name": "wycenka",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @wycenka/web --filter @wycenka/worker dev",
+    "build": "pnpm --filter @wycenka/web build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "typecheck": "pnpm -r --parallel typecheck",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "db:generate": "pnpm --filter @wycenka/db generate",
+    "db:migrate": "pnpm --filter @wycenka/worker db:migrate"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "^10.14.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.2",
+    "vitest": "^5.1.0"
+  }
+}
