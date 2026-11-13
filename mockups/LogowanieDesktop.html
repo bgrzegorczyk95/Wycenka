@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15. Komputer – logowanie – makieta</title>
+<!-- Makieta: 15. Komputer – logowanie | desktop (płynna szerokość) | kolor akcentu #C2410C -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2430}a:hover{color:#000000}
+</style>
+<style></style>
+</head>
+<body>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F5F3EE; font-family: Inter, system-ui, sans-serif; color: #1C2430; display: flex; flex-wrap: wrap">
+  <section aria-label="O aplikacji" style="flex: 1 1 380px; min-width: 0; box-sizing: border-box; background: #1C2430; color: #FFFFFF; padding: clamp(28px, 5vw, 64px); display: flex; flex-direction: column; gap: 28px">
+    <a href="StartDesktop.html" style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 26px; font-weight: 700; color: #FFFFFF; text-decoration: none">Wycenka</a>
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 460px">
+      <h2 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: clamp(30px, 3.5vw, 44px); line-height: 1.1; font-weight: 700; letter-spacing: -1px">Twoje oferty i cennik w jednym miejscu.</h2>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 24px; color: #D7DCE3">
+        <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2B08C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M20 6L9 17l-5-5"></path></svg>Na telefonie nagrywasz oględziny, tutaj spokojnie poprawiasz oferty.</li>
+        <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2B08C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M20 6L9 17l-5-5"></path></svg>Cennik edytujesz w tabeli, jak w Excelu.</li>
+        <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2B08C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M20 6L9 17l-5-5"></path></svg>Widzisz, kto otworzył ofertę, a kto ją zaakceptował.</li>
+      </ul>
+    </div>
+  </section>
+
+  <main style="flex: 1 1 420px; min-width: 0; box-sizing: border-box; padding: clamp(28px, 5vw, 64px); display: flex; align-items: center; justify-content: center">
+    <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.5px">Zaloguj się</h1>
+        <p style="margin: 0; font-size: 16px; line-height: 24px; color: #3F4856">Wyślemy kod SMS. Bez hasła do zapamiętania.</p>
+      </div>
+      <form style="display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="tel-d" style="font-size: 14px; font-weight: 600; color: #3F4856">Numer telefonu</label>
+          <div style="display: flex; gap: 8px">
+            <span style="min-height: 52px; padding: 0 14px; border: 1px solid #D5CFC3; border-radius: 12px; background: #ECE8DF; display: flex; align-items: center; font-size: 16px; color: #3F4856">+48</span>
+            <input id="tel-d" type="tel" autocomplete="tel-national" placeholder="600 000 000" style="flex-grow: 1; min-width: 0; min-height: 52px; box-sizing: border-box; padding: 0 14px; border: 1px solid #D5CFC3; border-radius: 12px; background: #FFFFFF; font: 400 17px Inter, sans-serif; color: #1C2430">
+          </div>
+        </div>
+        <button type="button" style="min-height: 52px; border-radius: 14px; border: none; background: #C2410C; color: #FFFFFF; font: 600 16px Inter, sans-serif">Wyślij kod</button>
+        <a href="PanelOfert.html" style="align-self: center; min-height: 40px; display: flex; align-items: center; font-size: 14px; color: #5A6372">Mam już kod – przejdź dalej</a>
+      </form>
+      <div style="display: flex; align-items: center; gap: 12px; color: #5A6372; font-size: 13px" aria-hidden="true"><div style="flex-grow: 1; height: 1px; background: #DDD7CC"></div>lub<div style="flex-grow: 1; height: 1px; background: #DDD7CC"></div></div>
+      <button type="button" style="min-height: 52px; border-radius: 14px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #1C2430; font: 600 15px Inter, sans-serif">Zaloguj adresem e-mail</button>
+      <div style="padding-top: 8px; border-top: 1px solid #E3DED4; display: flex; flex-direction: column; gap: 6px; align-items: center">
+        <a href="Profesja.html" style="min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 600; color: #1C2430">Nie masz konta? Załóż je w 2 minuty</a>
+        <p style="margin: 0; font-size: 12px; color: #5A6372; text-align: center">Logując się, akceptujesz regulamin i politykę prywatności.</p>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

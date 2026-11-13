@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9. Komputer – panel ofert – makieta</title>
+<!-- Makieta: 9. Komputer – panel ofert | desktop (płynna szerokość) | kolor akcentu #C2410C -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2430}a:hover{color:#000000}
+</style>
+<style></style>
+</head>
+<body>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F5F3EE; font-family: Inter, system-ui, sans-serif; color: #1C2430; display: flex; flex-wrap: wrap">
+  <aside style="flex: 1 1 220px; max-width: 100%; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E3DED4; padding: 28px 16px; display: flex; flex-direction: column; gap: 24px">
+    <div style="padding: 0 8px; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; font-weight: 700; color: #C2410C">Wycenka</span>
+      <span style="font-size: 13px; color: #5A6372">Usługi Glazurnicze Nowak</span>
+    </div>
+    <nav aria-label="Menu główne" style="display: flex; flex-direction: column; gap: 4px">
+      <a href="PanelOfert.html" aria-current="page" style="min-height: 44px; padding: 0 12px; border-radius: 10px; background: #F5F3EE; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 600; color: #1C2430">Oferty</a>
+      <a href="CennikDesktop.html" style="min-height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 500; color: #3F4856">Cennik</a>
+      <a href="#" style="min-height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 500; color: #3F4856">Klienci</a>
+      <a href="#" style="min-height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 500; color: #3F4856">Firma i logo</a>
+    </nav>
+    <p style="margin: 0; padding: 12px; border-radius: 12px; background: #F5F3EE; font-size: 13px; line-height: 19px; color: #3F4856">Nagrywasz oględziny na telefonie – oferta pojawi się tutaj od razu.</p>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px clamp(16px, 3vw, 40px); display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+      <h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.5px">Oferty</h1>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+        <label for="szukaj-oferty" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Szukaj ofert</label>
+        <input id="szukaj-oferty" type="search" placeholder="Szukaj klienta lub oferty…" style="width: 280px; max-width: 100%; min-height: 44px; box-sizing: border-box; padding: 0 14px; border: 1px solid #D5CFC3; border-radius: 12px; background: #FFFFFF; font: 400 15px Inter, sans-serif; color: #1C2430">
+        <button type="button" style="min-height: 44px; padding: 0 18px; border-radius: 12px; border: none; background: #C2410C; color: #FFFFFF; font: 600 15px Inter, sans-serif">+ Nowa oferta</button>
+      </div>
+    </div>
+
+    <section aria-label="Przypomnienie" style="background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px; padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 15px; font-weight: 600">Zadzwoń do Anny Kowalskiej</span>
+        <span style="font-size: 13px; color: #5A6372">Otworzyła ofertę na łazienkę 3 dni temu i jeszcze nie odpowiedziała.</span>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <button type="button" style="min-height: 40px; padding: 0 16px; border-radius: 10px; border: none; background: #1C2430; color: #FFFFFF; font: 600 14px Inter, sans-serif">Zadzwoń</button>
+        <button type="button" style="min-height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #1C2430; font: 500 14px Inter, sans-serif">Później</button>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section aria-label="Lista ofert" style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px; overflow: hidden">
+        <ul style="list-style: none; margin: 0; padding: 0">
+          <li style="padding: 14px 16px; background: #FDF1EA; border-bottom: 1px solid #EEEAE2; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 10px"><span style="font-size: 15px; font-weight: 600">Łazienka</span><span style="font-size: 15px; font-weight: 600">8 931,60 zł</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 13px; color: #5A6372">Anna Kowalska · Mokotów</span><span style="font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #E7F0FB; color: #1F4F8A">Otwarta</span></div>
+          </li>
+          <li style="padding: 14px 16px; border-bottom: 1px solid #EEEAE2; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 10px"><span style="font-size: 15px; font-weight: 600">Malowanie 3 pokoi</span><span style="font-size: 15px; font-weight: 600">4 200,00 zł</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 13px; color: #5A6372">Piotr Zieliński · Ursynów</span><span style="font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #E3F2E7; color: #1E6B34">Zaakceptowana</span></div>
+          </li>
+          <li style="padding: 14px 16px; border-bottom: 1px solid #EEEAE2; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 10px"><span style="font-size: 15px; font-weight: 600">Płytki nad blatem</span><span style="font-size: 15px; font-weight: 600">1 350,00 zł</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 13px; color: #5A6372">Marta Wiśniewska · Wola</span><span style="font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #EEF0F3; color: #3F4856">Wysłana</span></div>
+          </li>
+          <li style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 10px"><span style="font-size: 15px; font-weight: 600">Remont łazienki</span><span style="font-size: 15px; font-weight: 600; color: #5A6372">—</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 13px; color: #5A6372">Tomasz Lewandowski · Bemowo</span><span style="font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; border: 1px solid #C9C2B4; color: #5A6372">Szkic</span></div>
+          </li>
+        </ul>
+      </section>
+
+      <section aria-label="Szczegóły oferty" style="flex: 999 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: flex-start">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <h2 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 24px; font-weight: 700">Łazienka</h2>
+            <span style="font-size: 14px; color: #5A6372">Anna Kowalska · Mokotów · oferta nr 2026/11/014 · ważna do 27.11.2026</span>
+          </div>
+          <span style="font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: #E7F0FB; color: #1F4F8A">Otwarta przez klienta</span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 10px; border: none; background: #1C2430; color: #FFFFFF; font: 600 14px Inter, sans-serif">Edytuj pozycje</button>
+          <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #1C2430; font: 500 14px Inter, sans-serif">Wyślij ponownie</button>
+          <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #1C2430; font: 500 14px Inter, sans-serif">Pobierz PDF</button>
+          <a href="KlientDesktop.html" style="min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #D5CFC3; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 500; color: #1C2430">Zobacz jak klient</a>
+        </div>
+
+        <div style="overflow-x: auto">
+          <table style="width: 100%; min-width: 460px; border-collapse: collapse; font-size: 14px">
+            <thead>
+              <tr style="text-align: left; color: #5A6372; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px">
+                <th scope="col" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid #E3DED4">Pozycja</th>
+                <th scope="col" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid #E3DED4; text-align: right">Ilość</th>
+                <th scope="col" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid #E3DED4; text-align: right">Cena</th>
+                <th scope="col" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid #E3DED4; text-align: right">Wartość</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2">Skucie płytek (ściany + podłoga)</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">30,4 m²</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">45,00 zł</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right; font-weight: 600">1 368,00 zł</td></tr>
+              <tr><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2">Płytki 60×120 – ściany</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">24,4 m²</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">180,00 zł</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right; font-weight: 600">4 392,00 zł</td></tr>
+              <tr><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2">Płytki – podłoga</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">6,0 m²</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">160,00 zł</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right; font-weight: 600">960,00 zł</td></tr>
+              <tr><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2">Montaż stelaża podtynkowego WC</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">1 kpl</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right">650,00 zł</td><td style="padding: 10px 0; border-bottom: 1px solid #EEEAE2; text-align: right; font-weight: 600">650,00 zł</td></tr>
+              <tr><td style="padding: 10px 0">Montaż brodzika walk-in</td><td style="padding: 10px 0; text-align: right">1 kpl</td><td style="padding: 10px 0; text-align: right">900,00 zł</td><td style="padding: 10px 0; text-align: right; font-weight: 600">900,00 zł</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-start">
+          <section aria-label="Historia oferty" style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px">
+            <h3 style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Historia</h3>
+            <ol style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #3F4856">
+              <li>Utworzona z nagrania 0:42 i 3 zdjęć</li>
+              <li>Wysłana SMS-em do klientki</li>
+              <li>Otwarta przez klientkę 3 dni temu</li>
+              <li style="color: #9A3412; font-weight: 600">Brak odpowiedzi – przypomnienie dziś</li>
+            </ol>
+          </section>
+          <div style="flex: 0 1 260px; padding: 14px 16px; border-radius: 12px; background: #F5F3EE; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; justify-content: space-between; font-size: 14px; color: #3F4856"><span>Netto</span><span>8 270,00 zł</span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px; color: #3F4856"><span>VAT 8%</span><span>661,60 zł</span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 17px; font-weight: 700"><span>Brutto</span><span>8 931,60 zł</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>23. Komputer – dane firmy – makieta</title>
+<!-- Makieta: 23. Komputer – dane firmy | desktop (płynna szerokość) | kolor akcentu #C2410C -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2430}a:hover{color:#000000}
+</style>
+<style></style>
+</head>
+<body>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F5F3EE; font-family: Inter, system-ui, sans-serif; color: #1C2430; display: flex; flex-direction: column">
+  <header style="border-bottom: 1px solid #E3DED4">
+    <div style="max-width: 1080px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <span style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; font-weight: 700; color: #C2410C">Wycenka</span>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="font-size: 14px; color: #5A6372">Krok 3 z 3</span>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 180px" aria-hidden="true">
+          <div style="height: 4px; border-radius: 2px; background: #C2410C"></div>
+          <div style="height: 4px; border-radius: 2px; background: #C2410C"></div>
+          <div style="height: 4px; border-radius: 2px; background: #C2410C"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1080px; width: 100%; margin: 0 auto; box-sizing: border-box; padding: 40px 24px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.5px">Dane firmy</h1>
+      <p style="margin: 0; font-size: 16px; color: #3F4856">Pojawią się na każdej ofercie. Po prawej widzisz, jak będzie wyglądał nagłówek.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+      <form style="flex: 999 1 460px; min-width: 0; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: center; gap: 16px">
+          <div role="img" aria-label="Miejsce na logo" style="width: 72px; height: 72px; flex-shrink: 0; border-radius: 16px; border: 1px dashed #B9B1A2; background: #FAF8F4; display: flex; align-items: center; justify-content: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5A6372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="9" cy="9" r="2"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <button type="button" style="align-self: flex-start; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #D5CFC3; background: #FFFFFF; font: 600 14px Inter, sans-serif; color: #1C2430">Wgraj logo</button>
+            <span style="font-size: 13px; color: #5A6372">PNG lub JPG. Możesz przeciągnąć plik tutaj.</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px">
+          <div style="flex: 2 1 280px; display: flex; flex-direction: column; gap: 4px"><label for="d-nazwa" style="font-size: 13px; font-weight: 600; color: #3F4856">Nazwa firmy</label><input id="d-nazwa" type="text" value="Usługi Glazurnicze Nowak" style="min-height: 46px; box-sizing: border-box; padding: 0 12px; border: 1px solid #D5CFC3; border-radius: 10px; font: 400 15px Inter, sans-serif; color: #1C2430"></div>
+          <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px"><label for="d-nip" style="font-size: 13px; font-weight: 600; color: #3F4856">NIP</label><input id="d-nip" type="text" inputmode="numeric" placeholder="000-000-00-00" style="min-height: 46px; box-sizing: border-box; padding: 0 12px; border: 1px solid #D5CFC3; border-radius: 10px; font: 400 15px Inter, sans-serif; color: #1C2430"></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px">
+          <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px"><label for="d-tel" style="font-size: 13px; font-weight: 600; color: #3F4856">Telefon</label><input id="d-tel" type="tel" value="600 000 000" style="min-height: 46px; box-sizing: border-box; padding: 0 12px; border: 1px solid #D5CFC3; border-radius: 10px; font: 400 15px Inter, sans-serif; color: #1C2430"></div>
+          <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px"><label for="d-mail" style="font-size: 13px; font-weight: 600; color: #3F4856">E-mail (opcjonalnie)</label><input id="d-mail" type="email" placeholder="biuro@twojafirma.pl" style="min-height: 46px; box-sizing: border-box; padding: 0 12px; border: 1px solid #D5CFC3; border-radius: 10px; font: 400 15px Inter, sans-serif; color: #1C2430"></div>
+          <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px"><label for="d-obszar" style="font-size: 13px; font-weight: 600; color: #3F4856">Obszar działania</label><input id="d-obszar" type="text" value="Warszawa i okolice" style="min-height: 46px; box-sizing: border-box; padding: 0 12px; border: 1px solid #D5CFC3; border-radius: 10px; font: 400 15px Inter, sans-serif; color: #1C2430"></div>
+        </div>
+        <fieldset style="margin: 4px 0 0 0; padding: 4px 16px 16px 16px; border: 1px solid #E3DED4; border-radius: 14px; display: flex; flex-wrap: wrap; gap: 14px">
+          <legend style="padding: 0 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Domyślne warunki oferty</legend>
+          <div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 4px"><label for="d-wazn" style="font-size: 13px; font-weight: 600; color: #3F4856">Ważność oferty</label><select id="d-wazn" style="min-height: 46px; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; background: #FFFFFF; font: 400 15px Inter, sans-serif; color: #1C2430"><option>7 dni</option><option selected>14 dni</option><option>30 dni</option></select></div>
+          <div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 4px"><label for="d-zal" style="font-size: 13px; font-weight: 600; color: #3F4856">Zaliczka</label><select id="d-zal" style="min-height: 46px; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; background: #FFFFFF; font: 400 15px Inter, sans-serif; color: #1C2430"><option>brak</option><option>20%</option><option selected>30%</option><option>50%</option></select></div>
+          <div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 4px"><label for="d-vat" style="font-size: 13px; font-weight: 600; color: #3F4856">Stawka VAT</label><select id="d-vat" style="min-height: 46px; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; background: #FFFFFF; font: 400 15px Inter, sans-serif; color: #1C2430"><option selected>8%</option><option>23%</option><option>zwolniony z VAT</option></select></div>
+          <span style="flex: 1 1 100%; font-size: 13px; color: #5A6372">Stawkę VAT ustal z księgową – zależy od rodzaju prac i budynku. Możesz ją zmienić w każdej ofercie.</span>
+        </fieldset>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 4px">
+          <a href="CennikDesktop.html" style="min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 500; color: #3F4856">Wróć do stawek</a>
+          <a href="PanelOfert.html" style="min-height: 52px; padding: 0 24px; border-radius: 14px; background: #C2410C; display: flex; align-items: center; text-decoration: none; font-size: 16px; font-weight: 600; color: #FFFFFF">Gotowe – przejdź do ofert</a>
+        </div>
+      </form>
+
+      <aside aria-label="Podgląd nagłówka oferty" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Podgląd na ofercie</span>
+        <div style="background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <div role="img" aria-label="Logo firmy" style="width: 48px; height: 48px; border-radius: 12px; background: #1C2430; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 18px; font-weight: 700">UN</div>
+            <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 600">Usługi Glazurnicze Nowak</span><span style="font-size: 13px; color: #5A6372">tel. 600 000 000 · Warszawa i okolice</span></div>
+          </div>
+          <div style="height: 1px; background: #EEEAE2"></div>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #3F4856">
+            <span>Oferta ważna 14 dni</span>
+            <span>Zaliczka 30% przy rozpoczęciu</span>
+            <span>Ceny brutto z VAT 8%</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</body>
+</html>

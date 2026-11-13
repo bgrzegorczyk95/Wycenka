@@ -1,0 +1,80 @@
+{
+  "_description": "Złoty przykład z makiet. Testy silnika wyceny (packages/core) muszą odtworzyć dokładnie te liczby. Kwoty w groszach, ilości w tysięcznych jednostki, procenty w punktach bazowych.",
+  "company": {
+    "name": "Usługi Glazurnicze Nowak",
+    "phone": "600 000 000",
+    "serviceArea": "Warszawa i okolice",
+    "defaultValidityDays": 14,
+    "defaultDepositBps": 3000,
+    "defaultVatBps": 800
+  },
+  "client": { "name": "Anna Kowalska", "district": "Mokotów" },
+  "priceListAtOfferTime": [
+    { "id": "skucie_plytek", "name": "Skucie płytek", "offerName": null, "unit": "m2", "measure": "walls_floor", "priceGr": 4500, "tags": ["wall", "floor"] },
+    { "id": "gruntowanie", "name": "Gruntowanie", "offerName": null, "unit": "m2", "measure": "walls_floor", "priceGr": 800, "tags": ["wall", "floor"] },
+    { "id": "hydroizolacja", "name": "Hydroizolacja", "offerName": null, "unit": "m2", "measure": "floor", "priceGr": 3500, "tags": ["floor"] },
+    { "id": "plytki_standard_sciany", "name": "Płytki standard – ściany", "offerName": null, "unit": "m2", "measure": "walls", "priceGr": 14000, "tags": ["wall", "tiles", "mosaic-eligible"] },
+    { "id": "plytki_60x120_sciany", "name": "Płytki 60×120 – ściany", "offerName": null, "unit": "m2", "measure": "walls", "priceGr": 18000, "tags": ["wall", "tiles", "large-format"] },
+    { "id": "plytki_podloga", "name": "Płytki – podłoga", "offerName": null, "unit": "m2", "measure": "floor", "priceGr": 16000, "tags": ["floor", "tiles", "mosaic-eligible"] },
+    { "id": "fugowanie_epoksydowe", "name": "Fugowanie epoksydowe", "offerName": null, "unit": "m2", "measure": "walls_floor", "priceGr": 6000, "tags": ["wall", "floor"] },
+    { "id": "listwa_naroznik", "name": "Listwa / narożnik", "offerName": null, "unit": "mb", "measure": "perimeter", "priceGr": 4000, "tags": ["trim"] },
+    { "id": "silikonowanie", "name": "Silikonowanie", "offerName": null, "unit": "mb", "measure": "perimeter", "priceGr": 1500, "tags": ["trim"] },
+    { "id": "stelaz_wc", "name": "Stelaż podtynkowy WC", "offerName": "Montaż stelaża podtynkowego WC", "unit": "kpl", "measure": "count", "priceGr": 65000, "tags": ["fixture"] }
+  ],
+  "rules": [
+    { "kind": "mosaic_surcharge", "bps": 2000, "enabled": true },
+    { "kind": "height_surcharge", "bps": 1500, "thresholdMilli": 3000, "enabled": true },
+    { "kind": "min_order", "amountGr": 50000, "enabled": true },
+    { "kind": "travel_fee", "amountGr": 10000, "enabled": true },
+    { "kind": "material_markup", "bps": 1000, "enabled": true }
+  ],
+  "transcript": "Łazienka dwa na trzy, wysokość dwa sześćdziesiąt, skuwamy stare płytki, nowe sześćdziesiąt na sto dwadzieścia do sufitu, brodzik walk-in, stelaż podtynkowy, materiał klienta.",
+  "recording": { "durationMs": 42000, "photos": ["Wanna", "Płytki", "WC"] },
+
+  "step1_extraction": {
+    "title": "Remont łazienki",
+    "rooms": [{ "id": "r1", "name": "Łazienka", "lengthM": 3.0, "widthM": 2.0, "heightM": 2.6, "openings": null }],
+    "items": [
+      { "priceListItemId": "skucie_plytek", "proposedName": null, "roomId": "r1", "scope": "walls_floor", "count": null, "manualQty": null, "tileHeightM": null, "mosaic": false, "quote": "skuwamy stare płytki", "fromAnswerTo": null },
+      { "priceListItemId": "plytki_60x120_sciany", "proposedName": null, "roomId": "r1", "scope": "walls", "count": null, "manualQty": null, "tileHeightM": null, "mosaic": false, "quote": "nowe sześćdziesiąt na sto dwadzieścia do sufitu", "fromAnswerTo": null },
+      { "priceListItemId": "stelaz_wc", "proposedName": null, "roomId": "r1", "scope": "count", "count": 1, "manualQty": null, "tileHeightM": null, "mosaic": false, "quote": "stelaż podtynkowy", "fromAnswerTo": null },
+      { "priceListItemId": null, "proposedName": "Montaż brodzika walk-in", "roomId": "r1", "scope": "count", "count": 1, "manualQty": null, "tileHeightM": null, "mosaic": false, "quote": "brodzik walk-in", "fromAnswerTo": null }
+    ],
+    "material": "client",
+    "outOfTown": null,
+    "questions": [{ "id": "q1", "text": "Czy płytki także na podłodze?", "kind": "yes_no", "options": ["Tak", "Nie"], "unit": null }]
+  },
+
+  "answers": { "q1": "Tak" },
+
+  "step2_extraction_after_answer": {
+    "_note": "Jak step1 + jedna pozycja z odpowiedzi; questions puste.",
+    "addedItem": { "priceListItemId": "plytki_podloga", "proposedName": null, "roomId": "r1", "scope": "floor", "count": null, "manualQty": null, "tileHeightM": null, "mosaic": false, "quote": "Tak", "fromAnswerTo": "q1" },
+    "questions": []
+  },
+
+  "expected": {
+    "geometry": { "r1": { "perimeterMilli": 10000, "wallsGrossMilli": 26000, "openingsMilli": 1600, "wallsMilli": 24400, "floorMilli": 6000, "assumedDefaultDoor": true } },
+    "itemsInOrder": [
+      { "name": "Skucie płytek (ściany + podłoga)", "unit": "m2", "qtyMilli": 30400, "unitPriceGr": 4500, "valueGr": 136800, "sourceKind": "transcript", "sourceQuote": "skuwamy stare płytki" },
+      { "name": "Płytki 60×120 – ściany", "unit": "m2", "qtyMilli": 24400, "unitPriceGr": 18000, "valueGr": 439200, "sourceKind": "transcript", "sourceQuote": "nowe sześćdziesiąt na sto dwadzieścia do sufitu" },
+      { "name": "Płytki – podłoga", "unit": "m2", "qtyMilli": 6000, "unitPriceGr": 16000, "valueGr": 96000, "sourceKind": "ai_answer", "sourceQuote": null },
+      { "name": "Montaż stelaża podtynkowego WC", "unit": "kpl", "qtyMilli": 1000, "unitPriceGr": 65000, "valueGr": 65000, "sourceKind": "transcript", "sourceQuote": "stelaż podtynkowy" },
+      { "name": "Montaż brodzika walk-in", "unit": "kpl", "qtyMilli": 1000, "unitPriceGr": null, "valueGr": null, "sourceKind": "transcript", "sourceQuote": "brodzik walk-in", "missingPrice": true }
+    ],
+    "totalsBeforeMissingPrice": { "netGr": 737000, "vatBps": 800, "vatGr": 58960, "grossGr": 795960, "missingPriceCount": 1, "canSend": false },
+    "afterUserSetsPrice": { "item": "Montaż brodzika walk-in", "unitPriceGr": 90000, "saveToPriceList": true, "newPriceListItem": { "name": "Brodzik walk-in", "offerName": "Montaż brodzika walk-in", "unit": "kpl", "measure": "count", "source": "offer" } },
+    "totalsFinal": { "netGr": 827000, "vatGr": 66160, "grossGr": 893160, "missingPriceCount": 0, "canSend": true },
+    "formatted": { "net": "8 270,00 zł", "vat": "661,60 zł", "gross": "8 931,60 zł" },
+    "sendStep": { "number": "2026/11/014", "validUntil": "2026-11-27", "depositBps": 3000, "startText": "od 2 grudnia 2026", "channel": "sms", "messageTemplate": "Dzień dobry, przesyłam ofertę na remont łazienki: {link}. Pozdrawiam, {userFirstName} {userLastName}" }
+  },
+
+  "extraCasesToTest": [
+    { "name": "Mozaika +20%", "input": "plytki_standard_sciany, scope walls, mosaic: true, ściany 24,4 m², cena 140 zł", "expectedValueGr": 409920, "math": "24,4 × 140,00 × 1,20 = 4 099,20 zł" },
+    { "name": "Wysokość > 3 m +15% tylko na ściany", "input": "pokój 4 × 3 × 3,2 m, drzwi domyślne, plytki_standard_sciany", "expectedQtyMilli": 43200, "expectedValueGr": 695520, "math": "obwód 14 m × 3,2 = 44,8 − 1,6 = 43,2 m²; 43,2 × 140 × 1,15 = 6 955,20 zł" },
+    { "name": "Minimalna kwota zlecenia", "input": "jedna pozycja: silikonowanie 5 mb × 15 zł = 75 zł", "expected": "dodatkowa pozycja „Dopłata do minimalnej kwoty zlecenia” 425,00 zł, netto 500,00 zł" },
+    { "name": "Płytki do 2 m", "input": "łazienka 3 × 2 × 2,6, tileHeightM 2.0, drzwi domyślne 0,8 × 2,0", "expectedQtyMilli": 18400, "math": "10 × 2,0 = 20,0 − 0,8 × min(2,0; 2,0) = 18,4 m²" },
+    { "name": "Zwolniony z VAT", "input": "vatBps null, netto 8 270,00", "expected": "VAT 0, brutto 8 270,00 zł, etykieta „zw.”" },
+    { "name": "Zaokrąglanie ilości", "input": "pokój 2,35 × 1,85 m, podłoga", "expectedQtyMilli": 4300, "math": "4,3475 m² → 4,3 m²" }
+  ]
+}

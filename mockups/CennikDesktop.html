@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10. Komputer – cennik – makieta</title>
+<!-- Makieta: 10. Komputer – cennik | desktop (płynna szerokość) | kolor akcentu #C2410C -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2430}a:hover{color:#000000}
+</style>
+<style></style>
+</head>
+<body>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F5F3EE; font-family: Inter, system-ui, sans-serif; color: #1C2430; display: flex; flex-wrap: wrap">
+  <aside style="flex: 1 1 220px; max-width: 100%; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E3DED4; padding: 28px 16px; display: flex; flex-direction: column; gap: 24px">
+    <div style="padding: 0 8px; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-family: 'Space Grotesk', Inter, sans-serif; font-size: 22px; font-weight: 700; color: #C2410C">Wycenka</span>
+      <span style="font-size: 13px; color: #5A6372">Usługi Glazurnicze Nowak</span>
+    </div>
+    <nav aria-label="Menu główne" style="display: flex; flex-direction: column; gap: 4px">
+      <a href="PanelOfert.html" style="min-height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 500; color: #3F4856">Oferty</a>
+      <a href="CennikDesktop.html" aria-current="page" style="min-height: 44px; padding: 0 12px; border-radius: 10px; background: #F5F3EE; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 600; color: #1C2430">Cennik</a>
+      <a href="#" style="min-height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 500; color: #3F4856">Klienci</a>
+      <a href="#" style="min-height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 500; color: #3F4856">Firma i logo</a>
+    </nav>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px clamp(16px, 3vw, 40px); display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.5px">Cennik</h1>
+        <span style="font-size: 14px; color: #5A6372">Glazurnik · 11 pozycji · ceny netto</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 12px; border: none; background: #1C2430; color: #FFFFFF; font: 600 14px Inter, sans-serif">+ Dodaj pozycję</button>
+        <a href="Import.html" style="min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #D5CFC3; background: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600; color: #1C2430">Importuj</a>
+        <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #1C2430; font: 600 14px Inter, sans-serif">Eksport do Excela</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section aria-label="Pozycje cennika" style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px; padding: 8px 20px 16px 20px">
+        <div style="overflow-x: auto">
+          <table style="width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px">
+            <thead>
+              <tr style="text-align: left; color: #5A6372; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px">
+                <th scope="col" style="padding: 12px 0; font-weight: 600; border-bottom: 1px solid #E3DED4">Pozycja</th>
+                <th scope="col" style="padding: 12px 0; font-weight: 600; border-bottom: 1px solid #E3DED4">Kategoria</th>
+                <th scope="col" style="padding: 12px 0; font-weight: 600; border-bottom: 1px solid #E3DED4">Jednostka</th>
+                <th scope="col" style="padding: 12px 0; font-weight: 600; border-bottom: 1px solid #E3DED4; text-align: right">Cena netto (zł)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Skucie płytek</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Przygotowanie</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">m²</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d1" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: skucie płytek</label><input id="d1" type="text" inputmode="decimal" value="45" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Gruntowanie</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Przygotowanie</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">m²</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d2" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: gruntowanie</label><input id="d2" type="text" inputmode="decimal" value="8" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Hydroizolacja</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Przygotowanie</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">m²</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d3" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: hydroizolacja</label><input id="d3" type="text" inputmode="decimal" value="35" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Płytki standard – ściany</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Płytki</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">m²</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d4" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: płytki standard – ściany</label><input id="d4" type="text" inputmode="decimal" value="140" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Płytki 60×120 – ściany</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Płytki</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">m²</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d5" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: płytki 60×120 – ściany</label><input id="d5" type="text" inputmode="decimal" value="180" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Płytki – podłoga</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Płytki</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">m²</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d6" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: płytki – podłoga</label><input id="d6" type="text" inputmode="decimal" value="160" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Fugowanie epoksydowe</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Płytki</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">m²</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d7" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: fugowanie epoksydowe</label><input id="d7" type="text" inputmode="decimal" value="60" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Listwa / narożnik</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Płytki</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">mb</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d8" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: listwa / narożnik</label><input id="d8" type="text" inputmode="decimal" value="40" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Silikonowanie</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Płytki</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">mb</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d9" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: silikonowanie</label><input id="d9" type="text" inputmode="decimal" value="15" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2">Stelaż podtynkowy WC</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">Montaż</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; color: #5A6372">kpl</td><td style="padding: 6px 0; border-bottom: 1px solid #EEEAE2; text-align: right"><label for="d10" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: stelaż podtynkowy WC</label><input id="d10" type="text" inputmode="decimal" value="650" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+              <tr><td style="padding: 6px 0"><span style="display: flex; align-items: center; gap: 8px">Brodzik walk-in <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #FDF1EA; color: #9A3412">nowa z oferty</span></span></td><td style="padding: 6px 0; color: #5A6372">Montaż</td><td style="padding: 6px 0; color: #5A6372">kpl</td><td style="padding: 6px 0; text-align: right"><label for="d11" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Cena: brodzik walk-in</label><input id="d11" type="text" inputmode="decimal" value="900" style="width: 96px; min-height: 40px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 8px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <section aria-label="Dopłaty i zasady" style="background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <h2 style="margin: 0; font-size: 16px; font-weight: 700">Dopłaty i zasady</h2>
+            <button type="button" style="min-height: 40px; padding: 0 4px; border: none; background: transparent; font: 600 14px Inter, sans-serif; color: #C2410C">Edytuj</button>
+          </div>
+          <dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; font-size: 14px">
+            <dt style="color: #3F4856">Mozaika i drobne formaty</dt><dd style="margin: 0; font-weight: 600">+20%</dd>
+            <dt style="color: #3F4856">Wysokość powyżej 3 m</dt><dd style="margin: 0; font-weight: 600">+15%</dd>
+            <dt style="color: #3F4856">Minimalna kwota zlecenia</dt><dd style="margin: 0; font-weight: 600">500 zł</dd>
+            <dt style="color: #3F4856">Dojazd poza miasto</dt><dd style="margin: 0; font-weight: 600">100 zł</dd>
+            <dt style="color: #3F4856">Materiał wykonawcy – narzut</dt><dd style="margin: 0; font-weight: 600">10%</dd>
+          </dl>
+        </section>
+        <section aria-label="Dodaj branżę" style="background: #FFFFFF; border: 1px dashed #B9B1A2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 16px; font-weight: 700">Robisz też inne prace?</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 20px; color: #3F4856">Dodaj szablon innej branży, np. malarza albo suchych zabudów. Dostaniesz listę prac bez cen.</p>
+          <a href="Profesja.html" style="align-self: flex-start; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #D5CFC3; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600; color: #1C2430">Wybierz branżę</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+</div>
+</body>
+</html>

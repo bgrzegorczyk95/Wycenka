@@ -1,0 +1,25 @@
+{
+  "trade": "glazurnik",
+  "label": "Glazurnik",
+  "description": "płytki, hydroizolacja, biały montaż",
+  "categories": ["Przygotowanie", "Płytki", "Montaż"],
+  "items": [
+    { "key": "skucie_plytek", "category": "Przygotowanie", "name": "Skucie płytek", "offerName": null, "unit": "m2", "measure": "walls_floor", "tags": ["wall", "floor"], "aliases": ["skuwanie", "skucie glazury", "skuć stare płytki", "zbicie płytek"] },
+    { "key": "gruntowanie", "category": "Przygotowanie", "name": "Gruntowanie", "offerName": null, "unit": "m2", "measure": "walls_floor", "tags": ["wall", "floor"], "aliases": ["grunt", "zagruntować"] },
+    { "key": "hydroizolacja", "category": "Przygotowanie", "name": "Hydroizolacja", "offerName": null, "unit": "m2", "measure": "floor", "tags": ["floor"], "aliases": ["folia w płynie", "izolacja przeciwwodna", "hydro"] },
+    { "key": "plytki_standard_sciany", "category": "Płytki", "name": "Płytki standard – ściany", "offerName": null, "unit": "m2", "measure": "walls", "tags": ["wall", "tiles", "mosaic-eligible"], "aliases": ["glazura", "płytki na ściany", "kafelki"] },
+    { "key": "plytki_60x120_sciany", "category": "Płytki", "name": "Płytki 60×120 – ściany", "offerName": null, "unit": "m2", "measure": "walls", "tags": ["wall", "tiles", "large-format"], "aliases": ["wielki format", "sześćdziesiąt na sto dwadzieścia", "60 na 120", "duże płyty"] },
+    { "key": "plytki_podloga", "category": "Płytki", "name": "Płytki – podłoga", "offerName": null, "unit": "m2", "measure": "floor", "tags": ["floor", "tiles", "mosaic-eligible"], "aliases": ["terakota", "płytki na podłogę", "posadzka"] },
+    { "key": "listwa_naroznik", "category": "Płytki", "name": "Listwa / narożnik", "offerName": null, "unit": "mb", "measure": "perimeter", "tags": ["trim"], "aliases": ["listwy", "narożniki", "profile"] },
+    { "key": "stelaz_wc", "category": "Montaż", "name": "Stelaż podtynkowy WC", "offerName": "Montaż stelaża podtynkowego WC", "unit": "kpl", "measure": "count", "tags": ["fixture"], "aliases": ["stelaż", "geberit", "wc podwieszane"] },
+    { "key": "brodzik_walk_in", "category": "Montaż", "name": "Brodzik walk-in", "offerName": "Montaż brodzika walk-in", "unit": "kpl", "measure": "count", "tags": ["fixture"], "aliases": ["walk-in", "prysznic bez brodzika", "odpływ liniowy"] }
+  ],
+  "defaultRules": [
+    { "kind": "mosaic_surcharge", "label": "Mozaika i drobne formaty", "bps": 2000, "enabled": true },
+    { "kind": "height_surcharge", "label": "Wysokość powyżej 3 m", "bps": 1500, "thresholdMilli": 3000, "enabled": true },
+    { "kind": "min_order", "label": "Minimalna kwota zlecenia", "amountGr": 50000, "enabled": true },
+    { "kind": "travel_fee", "label": "Dojazd poza miasto", "amountGr": 10000, "enabled": true },
+    { "kind": "material_markup", "label": "Materiał wykonawcy – narzut", "bps": 1000, "enabled": true }
+  ],
+  "_note": "Szablon NIE zawiera cen. Wartości w defaultRules to propozycje wyświetlane do edycji – fachowiec je zatwierdza albo zmienia (makieta Cennik)."
+}

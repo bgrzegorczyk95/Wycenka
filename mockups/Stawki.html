@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6. Wpisz stawki – makieta</title>
+<!-- Makieta: 6. Wpisz stawki | telefon 390 px | kolor akcentu #C2410C -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2430}a:hover{color:#000000}
+</style>
+<style>html{background:#E5E1D8} body>div{margin:0 auto; box-shadow:0 0 0 1px #D5CFC3}</style>
+</head>
+<body>
+<div style="width: 390px; height: 1080px; box-sizing: border-box; background: #F5F3EE; font-family: Inter, system-ui, sans-serif; color: #1C2430; display: flex; flex-direction: column">
+  <header style="padding: 28px 20px 14px 20px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px" aria-hidden="true">
+      <div style="height: 4px; border-radius: 2px; background: #C2410C"></div>
+      <div style="height: 4px; border-radius: 2px; background: #C2410C"></div>
+      <div style="height: 4px; border-radius: 2px; background: #DDD7CC"></div>
+    </div>
+    <a href="Profesja.html" style="font-size: 13px; color: #5A6372; text-decoration: none">Krok 2 z 3 · Glazurnik</a>
+    <h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.5px">Wpisz swoje stawki</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 20px; color: #3F4856">Ceny netto. Puste pozycje nie trafią do cennika – uzupełnisz je później.</p>
+  </header>
+
+  <div style="margin: 0 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+    <a href="Import.html" style="min-height: 64px; border-radius: 12px; background: #FFFFFF; border: 1px solid #DDD7CC; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; font-weight: 600; color: #1C2430">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v4"></path></svg>
+      Powiedz ceny
+    </a>
+    <a href="Import.html" style="min-height: 64px; border-radius: 12px; background: #FFFFFF; border: 1px solid #DDD7CC; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; font-weight: 600; color: #1C2430">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+      Zdjęcie kartki
+    </a>
+    <a href="Import.html" style="min-height: 64px; border-radius: 12px; background: #FFFFFF; border: 1px solid #DDD7CC; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; font-weight: 600; color: #1C2430">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
+      Excel / PDF
+    </a>
+  </div>
+
+  <p style="margin: 16px 20px 0 20px; font-size: 13px; font-weight: 600; color: #3F4856">Uzupełnione: 7 z 9</p>
+
+  <form style="margin: 8px 20px 0 20px; display: flex; flex-direction: column; gap: 14px">
+    <fieldset style="margin: 0; padding: 4px 14px; border: 1px solid #E3DED4; border-radius: 14px; background: #FFFFFF">
+      <legend style="padding: 0 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Przygotowanie</legend>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #EEEAE2">
+        <label for="s-skucie" style="font-size: 15px">Skucie płytek</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-skucie" type="text" inputmode="decimal" value="45" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/m²</span></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #EEEAE2">
+        <label for="s-grunt" style="font-size: 15px">Gruntowanie</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-grunt" type="text" inputmode="decimal" value="8" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/m²</span></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0">
+        <label for="s-hydro" style="font-size: 15px">Hydroizolacja</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-hydro" type="text" inputmode="decimal" placeholder="—" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px dashed #B9B1A2; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430; background: #FAF8F4"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/m²</span></span>
+      </div>
+    </fieldset>
+
+    <fieldset style="margin: 0; padding: 4px 14px; border: 1px solid #E3DED4; border-radius: 14px; background: #FFFFFF">
+      <legend style="padding: 0 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Płytki</legend>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #EEEAE2">
+        <label for="s-std" style="font-size: 15px">Płytki standard – ściany</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-std" type="text" inputmode="decimal" value="140" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/m²</span></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #EEEAE2">
+        <label for="s-duze" style="font-size: 15px">Płytki 60×120 – ściany</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-duze" type="text" inputmode="decimal" value="180" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/m²</span></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #EEEAE2">
+        <label for="s-podloga" style="font-size: 15px">Płytki – podłoga</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-podloga" type="text" inputmode="decimal" value="160" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/m²</span></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0">
+        <label for="s-listwa" style="font-size: 15px">Listwa / narożnik</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-listwa" type="text" inputmode="decimal" value="40" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/mb</span></span>
+      </div>
+    </fieldset>
+
+    <fieldset style="margin: 0; padding: 4px 14px; border: 1px solid #E3DED4; border-radius: 14px; background: #FFFFFF">
+      <legend style="padding: 0 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Montaż</legend>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #EEEAE2">
+        <label for="s-stelaz" style="font-size: 15px">Stelaż podtynkowy WC</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-stelaz" type="text" inputmode="decimal" value="650" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #D5CFC3; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/kpl</span></span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0">
+        <label for="s-brodzik" style="font-size: 15px">Brodzik walk-in</label>
+        <span style="display: flex; align-items: center; gap: 6px"><input id="s-brodzik" type="text" inputmode="decimal" placeholder="—" style="width: 72px; min-height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px dashed #B9B1A2; border-radius: 10px; font: 500 15px Inter, sans-serif; text-align: right; color: #1C2430; background: #FAF8F4"><span style="width: 48px; font-size: 13px; color: #5A6372">zł/kpl</span></span>
+      </div>
+    </fieldset>
+
+    <button type="button" style="min-height: 44px; border-radius: 12px; border: 1px dashed #B9B1A2; background: transparent; font: 500 14px Inter, sans-serif; color: #3F4856">+ Dodaj własną pozycję</button>
+  </form>
+
+  <div style="flex-grow: 1"></div>
+
+  <div style="padding: 16px 20px 28px 20px; display: flex; flex-direction: column; gap: 8px">
+    <a href="DaneFirmy.html" style="display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 14px; background: #1C2430; color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 600">Zapisz i przejdź dalej</a>
+    <p style="margin: 0; font-size: 12px; color: #5A6372; text-align: center">Krok 3: dane firmy i logo</p>
+  </div>
+</div>
+</body>
+</html>

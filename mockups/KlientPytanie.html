@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>21. Klient – mam pytanie – makieta</title>
+<!-- Makieta: 21. Klient – mam pytanie | telefon 390 px | kolor akcentu #C2410C -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2430}a:hover{color:#000000}
+</style>
+<style>html{background:#E5E1D8} body>div{margin:0 auto; box-shadow:0 0 0 1px #D5CFC3}</style>
+</head>
+<body>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; font-family: Inter, system-ui, sans-serif; color: #1C2430; display: flex; flex-direction: column">
+  <header style="padding: 20px 20px 12px 20px; display: flex; flex-direction: column; gap: 6px">
+    <a href="Klient.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; text-decoration: none; color: #5A6372">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A6372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Wróć do oferty
+    </a>
+    <h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.5px">Zadaj pytanie</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 22px; color: #3F4856">Usługi Glazurnicze Nowak dostaną je od razu, razem z numerem oferty.</p>
+  </header>
+
+  <form style="margin: 12px 20px 0 20px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 13px; font-weight: 600; color: #3F4856">Częste pytania</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #D5CFC3; background: #FFFFFF; font: 500 14px Inter, sans-serif; color: #1C2430">Kiedy możecie zacząć?</button>
+        <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #D5CFC3; background: #FFFFFF; font: 500 14px Inter, sans-serif; color: #1C2430">Ile potrwają prace?</button>
+        <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #D5CFC3; background: #FFFFFF; font: 500 14px Inter, sans-serif; color: #1C2430">Czy można zmienić zakres?</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="pytanie" style="font-size: 13px; font-weight: 600; color: #3F4856">Twoje pytanie</label>
+      <textarea id="pytanie" rows="5" placeholder="Napisz, o co chcesz zapytać…" style="box-sizing: border-box; padding: 12px; border: 1px solid #D5CFC3; border-radius: 12px; font: 400 16px Inter, sans-serif; color: #1C2430; resize: none"></textarea>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="kontakt" style="font-size: 13px; font-weight: 600; color: #3F4856">Telefon do kontaktu (opcjonalnie)</label>
+      <input id="kontakt" type="tel" placeholder="np. 600 000 000" style="min-height: 48px; box-sizing: border-box; padding: 0 12px; border: 1px solid #D5CFC3; border-radius: 12px; font: 400 16px Inter, sans-serif; color: #1C2430">
+    </div>
+  </form>
+
+  <div style="flex-grow: 1"></div>
+
+  <div style="padding: 20px 20px 28px 20px; display: flex; flex-direction: column; gap: 10px">
+    <button type="button" style="min-height: 56px; border-radius: 14px; border: none; background: #1C2430; color: #FFFFFF; font: 600 17px Inter, sans-serif">Wyślij pytanie</button>
+    <p style="margin: 0; font-size: 13px; line-height: 18px; color: #5A6372; text-align: center">Oferta pozostaje aktywna – możesz ją zaakceptować później.</p>
+  </div>
+</div>
+</body>
+</html>

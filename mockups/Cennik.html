@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7. Cennik – makieta</title>
+<!-- Makieta: 7. Cennik | telefon 390 px | kolor akcentu #C2410C -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2430}a:hover{color:#000000}
+</style>
+<style>html{background:#E5E1D8} body>div{margin:0 auto; box-shadow:0 0 0 1px #D5CFC3}</style>
+</head>
+<body>
+<div style="width: 390px; height: 1300px; box-sizing: border-box; background: #F5F3EE; font-family: Inter, system-ui, sans-serif; color: #1C2430; display: flex; flex-direction: column">
+  <header style="padding: 28px 20px 12px 20px; display: flex; flex-direction: column; gap: 4px">
+    <p style="margin: 0; font-size: 13px; color: #5A6372">Glazurnik · 11 pozycji</p>
+    <h1 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.5px">Cennik</h1>
+  </header>
+
+  <div style="margin: 0 20px; display: flex; flex-direction: column; gap: 10px">
+    <div style="position: relative">
+      <label for="szukaj" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Szukaj w cenniku</label>
+      <input id="szukaj" type="search" placeholder="Szukaj pozycji…" style="width: 100%; min-height: 44px; box-sizing: border-box; padding: 0 14px; border: 1px solid #D5CFC3; border-radius: 12px; background: #FFFFFF; font: 400 15px Inter, sans-serif; color: #1C2430">
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <button type="button" style="min-height: 44px; border-radius: 12px; border: none; background: #1C2430; color: #FFFFFF; font: 600 14px Inter, sans-serif">+ Dodaj pozycję</button>
+      <a href="Import.html" style="min-height: 44px; border-radius: 12px; border: 1px solid #D5CFC3; background: #FFFFFF; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; font-weight: 600; color: #1C2430">Importuj</a>
+    </div>
+  </div>
+
+  <section aria-label="Nowa pozycja z oferty" style="margin: 14px 20px 0 20px; padding: 12px 14px; border-radius: 12px; background: #FDF1EA; border: 1px solid #F2CDB7; display: flex; flex-direction: column; gap: 2px">
+    <p style="margin: 0; font-size: 13px; font-weight: 600">Dodano z oferty „Łazienka – A. Kowalska”</p>
+    <p style="margin: 0; font-size: 13px; color: #3F4856">Montaż brodzika walk-in · 900 zł/kpl</p>
+  </section>
+
+  <div style="margin: 14px 20px 0 20px; display: flex; flex-wrap: wrap; gap: 8px">
+    <button type="button" aria-pressed="true" style="min-height: 36px; padding: 0 14px; border-radius: 999px; border: none; background: #1C2430; color: #FFFFFF; font: 600 13px Inter, sans-serif">Wszystkie</button>
+    <button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #3F4856; font: 500 13px Inter, sans-serif">Przygotowanie</button>
+    <button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #3F4856; font: 500 13px Inter, sans-serif">Płytki</button>
+    <button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D5CFC3; background: #FFFFFF; color: #3F4856; font: 500 13px Inter, sans-serif">Montaż</button>
+  </div>
+
+  <h2 style="margin: 18px 20px 6px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Przygotowanie</h2>
+  <ul style="list-style: none; margin: 0 20px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px">
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Skucie płytek</span><span style="font-size: 15px; font-weight: 600">45 zł <span style="font-weight: 400; color: #5A6372">/ m²</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Gruntowanie</span><span style="font-size: 15px; font-weight: 600">8 zł <span style="font-weight: 400; color: #5A6372">/ m²</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 15px">Hydroizolacja</span><span style="font-size: 15px; font-weight: 600">35 zł <span style="font-weight: 400; color: #5A6372">/ m²</span></span></li>
+  </ul>
+
+  <h2 style="margin: 18px 20px 6px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Płytki</h2>
+  <ul style="list-style: none; margin: 0 20px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px">
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Płytki standard – ściany</span><span style="font-size: 15px; font-weight: 600">140 zł <span style="font-weight: 400; color: #5A6372">/ m²</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Płytki 60×120 – ściany</span><span style="font-size: 15px; font-weight: 600">180 zł <span style="font-weight: 400; color: #5A6372">/ m²</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Płytki – podłoga</span><span style="font-size: 15px; font-weight: 600">160 zł <span style="font-weight: 400; color: #5A6372">/ m²</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Fugowanie epoksydowe</span><span style="font-size: 15px; font-weight: 600">60 zł <span style="font-weight: 400; color: #5A6372">/ m²</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Listwa / narożnik</span><span style="font-size: 15px; font-weight: 600">40 zł <span style="font-weight: 400; color: #5A6372">/ mb</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 15px">Silikonowanie</span><span style="font-size: 15px; font-weight: 600">15 zł <span style="font-weight: 400; color: #5A6372">/ mb</span></span></li>
+  </ul>
+
+  <h2 style="margin: 18px 20px 6px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #5A6372">Montaż</h2>
+  <ul style="list-style: none; margin: 0 20px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px">
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #EEEAE2"><span style="font-size: 15px">Stelaż podtynkowy WC</span><span style="font-size: 15px; font-weight: 600">650 zł <span style="font-weight: 400; color: #5A6372">/ kpl</span></span></li>
+    <li style="min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 15px; display: flex; align-items: center; gap: 8px">Brodzik walk-in <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #FDF1EA; color: #9A3412">nowa</span></span><span style="font-size: 15px; font-weight: 600">900 zł <span style="font-weight: 400; color: #5A6372">/ kpl</span></span></li>
+  </ul>
+
+  <section aria-label="Dopłaty i zasady" style="margin: 22px 20px 0 20px; background: #FFFFFF; border: 1px solid #E3DED4; border-radius: 14px; padding: 6px 14px 12px 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center; min-height: 44px">
+      <h2 style="margin: 0; font-size: 15px; font-weight: 700">Dopłaty i zasady</h2>
+      <button type="button" style="min-height: 44px; padding: 0 4px; border: none; background: transparent; font: 600 14px Inter, sans-serif; color: #C2410C">Edytuj</button>
+    </div>
+    <dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; font-size: 14px">
+      <dt style="color: #3F4856">Mozaika i drobne formaty</dt><dd style="margin: 0; font-weight: 600">+20%</dd>
+      <dt style="color: #3F4856">Wysokość powyżej 3 m</dt><dd style="margin: 0; font-weight: 600">+15%</dd>
+      <dt style="color: #3F4856">Minimalna kwota zlecenia</dt><dd style="margin: 0; font-weight: 600">500 zł</dd>
+      <dt style="color: #3F4856">Dojazd poza miasto</dt><dd style="margin: 0; font-weight: 600">100 zł</dd>
+      <dt style="color: #3F4856">Materiał wykonawcy – narzut</dt><dd style="margin: 0; font-weight: 600">10%</dd>
+    </dl>
+  </section>
+
+  <div style="flex-grow: 1"></div>
+
+  <nav aria-label="Menu główne" style="border-top: 1px solid #E3DED4; background: #FFFFFF; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 6px 8px 14px 8px">
+    <a href="Main.html" style="min-height: 52px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #5A6372">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5A6372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h5"></path></svg>
+      Oferty
+    </a>
+    <button type="button" aria-current="page" style="min-height: 52px; border: none; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font: 600 12px Inter, sans-serif; color: #1C2430">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C2430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h12"></path></svg>
+      Cennik
+    </button>
+    <button type="button" style="min-height: 52px; border: none; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font: 500 12px Inter, sans-serif; color: #5A6372">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5A6372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+      Firma
+    </button>
+  </nav>
+</div>
+</body>
+</html>
