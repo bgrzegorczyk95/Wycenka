@@ -52,17 +52,25 @@ docs/              specyfikacja (czytaj przed większą zmianą)
 mockups/           makiety – źródło prawdy dla wyglądu
 ```
 
-## Komendy (do uzupełnienia po M0)
+## Komendy
 
 ```
 pnpm install
-pnpm dev            # web + worker lokalnie (wrangler dev)
-pnpm test           # vitest – silnik wyceny musi przechodzić zawsze
-pnpm typecheck
-pnpm lint
-pnpm db:generate    # drizzle-kit generate
-pnpm db:migrate     # wrangler d1 migrations apply (local)
+pnpm dev            # Vite (http://localhost:5173, proxy /api i /o) + wrangler dev (http://localhost:8787)
+pnpm build          # build SPA do apps/web/dist (serwowane przez Workera)
+pnpm test           # vitest (packages/core + apps/worker) – silnik wyceny musi przechodzić zawsze
+pnpm coverage       # vitest z pokryciem packages/core
+pnpm typecheck      # tsc --noEmit we wszystkich pakietach
+pnpm lint           # eslint + prettier --check
+pnpm format         # prettier --write
+pnpm db:generate    # drizzle-kit generate (packages/db/migrations)
+pnpm db:migrate     # wrangler d1 migrations apply DB --local
 ```
+
+Uwagi do narzędzi:
+- TypeScript przypięty do 6.0.x – typescript-eslint nie wspiera jeszcze TS 7 (natywnego).
+- pnpm blokuje skrypty instalacyjne; zatwierdzone są tylko `esbuild` i `workerd` (`allowBuilds` w `pnpm-workspace.yaml`).
+- Bindingi `AI` (M5) i `BROWSER` (M6) dojdą później – działają tylko zdalnie i wymagają konta Cloudflare.
 
 ## Jak pracujemy
 

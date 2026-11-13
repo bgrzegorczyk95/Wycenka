@@ -31,6 +31,21 @@ logika AI i wyceny, API, plan prac i złoty przykład do testów.
 4. Wklej prompt z `START_PROMPT.md`. Claude najpierw zada pytania – odpowiedz, potem zrobi etapy M0 i M1.
 5. Kolejne etapy zlecaj po jednym (szablon promptu w `START_PROMPT.md`).
 
+## Uruchomienie lokalnie (od M0)
+
+```
+npm i -g pnpm        # jeśli nie masz pnpm (corepack na Windows wymaga uprawnień administratora)
+pnpm install
+pnpm db:migrate      # lokalna baza D1 (Miniflare)
+pnpm dev             # aplikacja: http://localhost:5173, Worker: http://localhost:8787
+```
+
+Przed commitem: `pnpm test`, `pnpm typecheck`, `pnpm lint`. Sekrety lokalne: skopiuj
+`apps/worker/.dev.vars.example` do `apps/worker/.dev.vars` (plik jest w `.gitignore`).
+
+Struktura: `apps/web` (PWA), `apps/worker` (Hono: API, strona klienta, kolejka, cron),
+`packages/core` (silnik wyceny, bez zależności od Cloudflare), `packages/db` (Drizzle + migracje D1).
+
 ## Konta, które będą potrzebne (nie od razu)
 
 | Kiedy | Konto |
