@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+
+/* Design tokens from docs/02-ekrany.md → „Wygląd” */
+@theme {
+  --color-bg: #f5f3ee;
+  --color-surface: #ffffff;
+  --color-ink: #1c2430;
+  --color-ink-2: #3f4856;
+  --color-muted: #5a6372;
+  --color-line: #e3ded4;
+  --color-line-strong: #d5cfc3;
+  --color-sand: #ece8df;
+  --color-accent: #c2410c;
+  --color-accent-tint: #fdf1ea;
+  --color-success: #1e6b34;
+  --color-success-bg: #e3f2e7;
+  --color-warn: #6b4a12;
+  --color-warn-bg: #fff6e0;
+  --color-warn-line: #e9c77a;
+
+  --font-sans: 'Inter Variable', Inter, system-ui, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', Inter, sans-serif;
+
+  --radius-card: 16px;
+  --radius-field: 12px;
+  --radius-button: 14px;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
