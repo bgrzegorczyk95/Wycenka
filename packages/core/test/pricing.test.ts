@@ -23,11 +23,20 @@ describe('quantities by scope', () => {
   it('ceiling = floor area; perimeter = trim length without doors', () => {
     const pl: PriceListItem[] = [
       ...priceList,
-      { id: 'sufit', name: 'Malowanie sufitu', offerName: null, unit: 'm2', measure: 'ceiling', priceGr: 2000, tags: [] },
+      {
+        id: 'sufit',
+        name: 'Malowanie sufitu',
+        offerName: null,
+        unit: 'm2',
+        measure: 'ceiling',
+        priceGr: 2000,
+        tags: [],
+      },
     ];
     const r = priceOffer(
       input({
         priceList: pl,
+        rules: [], // keep the minimum-order top-up out of this test
         extraction: extraction({
           items: [
             item({ priceListItemId: 'sufit', scope: 'ceiling' }),
@@ -85,7 +94,11 @@ describe('quantities by scope', () => {
       input({
         extraction: extraction({
           items: [
-            item({ priceListItemId: 'hydroizolacja', scope: 'manual', manualQty: { value: 4.35, unit: 'm2' } }),
+            item({
+              priceListItemId: 'hydroizolacja',
+              scope: 'manual',
+              manualQty: { value: 4.35, unit: 'm2' },
+            }),
           ],
         }),
       }),
@@ -129,7 +142,8 @@ describe('quantities by scope', () => {
     );
     expect(r.items.map((i) => i.qtyMilli)).toEqual([1000, 1000, 1000]);
     expect(codes(r)).toEqual(['unit_scope_mismatch', 'unit_scope_mismatch', 'unit_scope_mismatch']);
-    expect(r.warnings[0]!.itemKey).toBe(r.items.find((i) => i.priceListItemId === 'stelaz_wc')!.key);
+    // Warnings follow the order of items on the offer.
+    expect(r.warnings.map((w) => w.itemKey)).toEqual(r.items.map((i) => i.key));
   });
 
   it('missing dimensions → quantity 0 and a warning', () => {
@@ -168,7 +182,11 @@ describe('quantities by scope', () => {
 
   it('item without roomId uses the only room; with several rooms it needs a roomId', () => {
     const one = priceOffer(
-      input({ extraction: extraction({ items: [item({ priceListItemId: 'plytki_podloga', scope: 'floor', roomId: null })] }) }),
+      input({
+        extraction: extraction({
+          items: [item({ priceListItemId: 'plytki_podloga', scope: 'floor', roomId: null })],
+        }),
+      }),
     );
     expect(one.items[0]!.qtyMilli).toBe(6000);
 
@@ -367,15 +385,30 @@ describe('surcharges', () => {
   it('material markup only with contractor material and the „material” tag', () => {
     const pl: PriceListItem[] = [
       ...priceList,
-      { id: 'klej', name: 'Klej do płytek', offerName: null, unit: 'm2', measure: 'floor', priceGr: 2000, tags: ['material'] },
+      {
+        id: 'klej',
+        name: 'Klej do płytek',
+        offerName: null,
+        unit: 'm2',
+        measure: 'floor',
+        priceGr: 2000,
+        tags: ['material'],
+      },
     ];
-    const items = [item({ priceListItemId: 'klej', scope: 'floor' }), item({ priceListItemId: 'plytki_podloga', scope: 'floor' })];
-    const contractor = priceOffer(input({ priceList: pl, extraction: extraction({ material: 'contractor', items }) }));
+    const items = [
+      item({ priceListItemId: 'klej', scope: 'floor' }),
+      item({ priceListItemId: 'plytki_podloga', scope: 'floor' }),
+    ];
+    const contractor = priceOffer(
+      input({ priceList: pl, extraction: extraction({ material: 'contractor', items }) }),
+    );
     expect(contractor.items.map((i) => [i.name, i.surchargeBps])).toEqual([
       ['Płytki – podłoga', 0],
       ['Klej do płytek', 1000],
     ]);
-    const client = priceOffer(input({ priceList: pl, extraction: extraction({ material: 'client', items }) }));
+    const client = priceOffer(
+      input({ priceList: pl, extraction: extraction({ material: 'client', items }) }),
+    );
     expect(client.items.every((i) => i.surchargeBps === 0)).toBe(true);
   });
 });
@@ -412,7 +445,9 @@ describe('rule items, discount and VAT', () => {
       input({
         extraction: extraction({
           outOfTown: true,
-          items: [item({ priceListItemId: 'silikonowanie', scope: 'manual', manualQty: { value: 5, unit: 'mb' } })],
+          items: [
+            item({ priceListItemId: 'silikonowanie', scope: 'manual', manualQty: { value: 5, unit: 'mb' } }),
+          ],
         }),
       }),
     );
@@ -451,7 +486,9 @@ describe('rule items, discount and VAT', () => {
     const r = priceOffer(
       input({
         extraction: extraction({
-          items: [item({ priceListItemId: 'silikonowanie', scope: 'manual', manualQty: { value: 5, unit: 'mb' } })],
+          items: [
+            item({ priceListItemId: 'silikonowanie', scope: 'manual', manualQty: { value: 5, unit: 'mb' } }),
+          ],
         }),
         discount: { bps: 1000 },
       }),
@@ -501,8 +538,23 @@ describe('overrides (locked user changes)', () => {
       input({
         extraction: step2,
         overrides: [
-          { kind: 'add', key: 'm1', priceListItemId: 'gruntowanie', name: 'Gruntowanie', unit: 'm2', qtyMilli: 30400 },
-          { kind: 'add', key: 'm2', priceListItemId: null, name: 'Wywóz gruzu', unit: 'kpl', qtyMilli: 1000, unitPriceGr: 30000 },
+          {
+            kind: 'add',
+            key: 'm1',
+            priceListItemId: 'gruntowanie',
+            name: 'Gruntowanie',
+            unit: 'm2',
+            qtyMilli: 30400,
+          },
+          {
+            kind: 'add',
+            key: 'm2',
+            priceListItemId: null,
+            name: 'Wywóz gruzu',
+            unit: 'kpl',
+            qtyMilli: 1000,
+            unitPriceGr: 30000,
+          },
           { kind: 'add', key: 'm3', priceListItemId: null, name: 'Bez ceny', unit: 'szt', qtyMilli: 1000 },
         ],
       }),
@@ -510,22 +562,42 @@ describe('overrides (locked user changes)', () => {
     const names = r.items.map((i) => i.name);
     expect(names.indexOf('Gruntowanie')).toBe(1); // price-list order: after skucie
     const grunt = r.items[1]!;
-    expect(grunt).toMatchObject({ sourceKind: 'manual', unitPriceGr: 800, valueGr: 24320, locked: true, roomId: null });
+    expect(grunt).toMatchObject({
+      sourceKind: 'manual',
+      unitPriceGr: 800,
+      valueGr: 24320,
+      locked: true,
+      roomId: null,
+    });
     expect(r.items.find((i) => i.key === 'm2')!.valueGr).toBe(30000);
     expect(r.items.find((i) => i.key === 'm3')!.missingPrice).toBe(true);
   });
 
+  it('edit of the quantity alone keeps the price-list price', () => {
+    const key = base().items[1]!.key;
+    const r = priceOffer(input({ extraction: step2, overrides: [{ kind: 'edit', key, qtyMilli: 20000 }] }));
+    expect(r.items[1]).toMatchObject({ qtyMilli: 20000, unitPriceGr: 18000, valueGr: 360000, locked: true });
+  });
+
+  it('removing an item also drops its warnings', () => {
+    const ex = extraction({ items: [item({ priceListItemId: 'stelaz_wc', scope: 'manual' })] });
+    const key = priceOffer(input({ extraction: ex })).items[0]!.key;
+    const r = priceOffer(input({ extraction: ex, overrides: [{ kind: 'remove', key }] }));
+    expect(r.items).toHaveLength(0);
+    expect(r.warnings).toEqual([]);
+  });
+
   it('ignores overrides for keys that no longer exist', () => {
-    const r = priceOffer(input({ extraction: step2, overrides: [{ kind: 'edit', key: 'gone', unitPriceGr: 1 }] }));
+    const r = priceOffer(
+      input({ extraction: step2, overrides: [{ kind: 'edit', key: 'gone', unitPriceGr: 1 }] }),
+    );
     expect(r.netGr).toBe(737000);
   });
 });
 
 describe('warnings', () => {
   it('room dimensions and height out of range', () => {
-    const r = priceOffer(
-      input({ extraction: extraction({ rooms: [room(0.4, 31, 5.5)], items: [] }) }),
-    );
+    const r = priceOffer(input({ extraction: extraction({ rooms: [room(0.4, 31, 5.5)], items: [] }) }));
     expect(codes(r)).toEqual(['room_dimension_out_of_range', 'room_height_out_of_range']);
     expect(r.warnings[0]!.roomId).toBe('r1');
   });
@@ -570,7 +642,11 @@ describe('warnings', () => {
     expect(codes(r)).toEqual(['quote_not_found', 'quote_not_found']);
     // Without a transcript no quote check is possible.
     expect(
-      codes(priceOffer(input({ extraction: extraction({ items: [item({ priceListItemId: 'stelaz_wc', quote: 'x' })] }) }))),
+      codes(
+        priceOffer(
+          input({ extraction: extraction({ items: [item({ priceListItemId: 'stelaz_wc', quote: 'x' })] }) }),
+        ),
+      ),
     ).toEqual([]);
   });
 
