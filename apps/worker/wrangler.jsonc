@@ -1,0 +1,47 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "wycenka",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // SPA from apps/web/dist; the Worker runs first only for API and the client offer page.
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/o/*"],
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "wycenka-dev",
+      // Placeholder until the D1 database is created (wrangler d1 create wycenka-dev --jurisdiction eu).
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "../../packages/db/migrations",
+    },
+  ],
+
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "wycenka-files-dev" }],
+
+  "queues": {
+    "producers": [{ "binding": "JOBS", "queue": "wycenka-jobs-dev" }],
+    "consumers": [{ "queue": "wycenka-jobs-dev", "max_batch_size": 5, "max_retries": 3 }],
+  },
+
+  // Hourly: reminders. Daily 03:00 Europe/Warsaw (02:00 UTC in winter): retention and expiry.
+  "triggers": { "crons": ["0 * * * *", "0 2 * * *"] },
+
+  "vars": {
+    "APP_URL": "http://localhost:5173",
+    "MOCK_AI": "1",
+    "MOCK_PDF": "1",
+  },
+
+  // Added in later stages (remote-only bindings, need a Cloudflare account):
+  //   "ai": { "binding": "AI" }                 – M5 (Whisper)
+  //   "browser": { "binding": "BROWSER" }       – M6 (PDF)
+
+  "observability": { "enabled": true },
+}

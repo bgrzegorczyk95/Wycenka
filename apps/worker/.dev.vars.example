@@ -1,0 +1,5 @@
+# Copy to .dev.vars (never commit .dev.vars). Secrets used from M2 onwards.
+# ANTHROPIC_API_KEY=
+# BETTER_AUTH_SECRET=
+# SMSAPI_TOKEN=
+# RESEND_API_KEY=

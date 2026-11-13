@@ -1,0 +1,22 @@
+{
+  "name": "@wycenka/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node -e \"require('fs').mkdirSync('../web/dist',{recursive:true})\" && wrangler dev --port 8787",
+    "deploy": "pnpm --filter @wycenka/web build && wrangler deploy",
+    "cf-typegen": "wrangler types",
+    "db:migrate": "wrangler d1 migrations apply DB --local",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@wycenka/core": "workspace:*",
+    "@wycenka/db": "workspace:*",
+    "hono": "^4.13.18"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261112.1",
+    "wrangler": "^4.160.1"
+  }
+}
