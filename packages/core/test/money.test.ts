@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import {
+  formatPLNShort,
   formatPercent,
   formatPLN,
   formatQty,
   parsePLN,
+  priceInputText,
   percentOf,
   roundHalfUp,
   toQtyMilli,
@@ -123,5 +125,25 @@ describe('toQtyMilli', () => {
     expect(toQtyMilli(2.35)).toBe(2350);
     expect(toQtyMilli(0.1 + 0.2)).toBe(300);
     expect(toQtyMilli(5)).toBe(5000);
+  });
+});
+
+describe('formatPLNShort and priceInputText', () => {
+  it.each([
+    [4500, '45 zł', '45'],
+    [4550, '45,50 zł', '45,50'],
+    [90000, '900 zł', '900'],
+    [123400, '1 234 zł', '1234'],
+    [0, '0 zł', '0'],
+    [-5000, '-50 zł', '-50'],
+  ])('%i gr → %s / %s', (gr, short, input) => {
+    expect(formatPLNShort(gr).replaceAll(NBSP, ' ')).toBe(short);
+    expect(priceInputText(gr)).toBe(input);
+  });
+  it('empty input for no price', () => {
+    expect(priceInputText(null)).toBe('');
+  });
+  it('round-trips through parsePLN', () => {
+    for (const gr of [0, 5, 4550, 123456]) expect(parsePLN(priceInputText(gr))).toBe(gr);
   });
 });

@@ -42,6 +42,23 @@ export function formatPLN(gr: number): string {
   return `${sign}${groupDigits(zl)},${cents}${NBSP}zł`;
 }
 
+/** Whole złoty without decimals (price lists, rules): 4500 → „45 zł”, 4550 → „45,50 zł”. */
+export function formatPLNShort(gr: number): string {
+  if (gr % 100 !== 0) return formatPLN(gr);
+  const sign = gr < 0 ? '-' : '';
+  return `${sign}${groupDigits(BigInt(Math.abs(gr) / 100))}${NBSP}zł`;
+}
+
+/** Grosze → text for a price input (no grouping): 4500 → „45”, 4550 → „45,50”. */
+export function priceInputText(gr: number | null): string {
+  if (gr === null) return '';
+  const sign = gr < 0 ? '-' : '';
+  const abs = Math.abs(gr);
+  const zl = Math.trunc(abs / 100);
+  const cents = abs % 100;
+  return cents === 0 ? `${sign}${zl}` : `${sign}${zl},${String(cents).padStart(2, '0')}`;
+}
+
 const UNIT_LABELS: Record<Unit, string> = { m2: 'm²', mb: 'mb', szt: 'szt.', kpl: 'kpl', h: 'h' };
 
 export function unitLabel(unit: Unit): string {

@@ -48,6 +48,16 @@ export const router = createBrowserRouter([
             lazy: () => import('./routes/PriceListPage').then((m) => ({ Component: m.PriceListPage })),
           },
           {
+            path: '/cennik/branza',
+            lazy: () =>
+              import('./routes/priceList/AddTradePage').then((m) => ({ Component: m.ChooseTradePage })),
+          },
+          {
+            path: '/cennik/branza/:trade',
+            lazy: () =>
+              import('./routes/priceList/AddTradePage').then((m) => ({ Component: m.AddTradeRatesPage })),
+          },
+          {
             path: '/firma',
             lazy: () => import('./routes/CompanyPage').then((m) => ({ Component: m.CompanyPage })),
           },
