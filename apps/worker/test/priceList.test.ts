@@ -1,7 +1,7 @@
 import type { OnboardingRatesResponse, PriceListEntry, PriceListResponse } from '@wycenka/core';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { Env } from '../src/env';
-import { Client, createTestEnv } from './setup';
+import { Client, createTestEnv, onboardGlazier } from './setup';
 
 let env: Env;
 let dispose: () => Promise<void>;
@@ -11,47 +11,8 @@ beforeAll(async () => {
 });
 afterAll(async () => dispose());
 
-/** Prices from the golden fixture / Cennik mockup. */
-const FIXTURE_PRICES: Record<string, number> = {
-  'glazurnik.skucie_plytek': 4500,
-  'glazurnik.gruntowanie': 800,
-  'glazurnik.hydroizolacja': 3500,
-  'glazurnik.plytki_standard_sciany': 14000,
-  'glazurnik.plytki_60x120_sciany': 18000,
-  'glazurnik.plytki_podloga': 16000,
-  'glazurnik.fugowanie_epoksydowe': 6000,
-  'glazurnik.listwa_naroznik': 4000,
-  'glazurnik.silikonowanie': 1500,
-  'glazurnik.stelaz_wc': 65000,
-};
-
 let phoneSeq = 100;
-async function onboardedGlazier(): Promise<Client> {
-  const client = new Client(env);
-  await client.loginByPhone(`+48600000${phoneSeq++}`);
-  const trades = await client.json<OnboardingRatesResponse>('POST', '/api/onboarding/trades', {
-    trades: ['glazurnik'],
-  });
-  await client.json('POST', '/api/onboarding/rates', {
-    items: trades.body.items.map((i) => ({
-      templateKey: i.templateKey,
-      priceGr: FIXTURE_PRICES[i.templateKey] ?? null,
-    })),
-  });
-  await client.json('PATCH', '/api/company', {
-    ownerName: 'Marek Nowak',
-    name: 'Usługi Glazurnicze Nowak',
-    nip: '',
-    phone: '',
-    email: '',
-    serviceArea: '',
-    defaultValidityDays: 14,
-    defaultDepositBps: 3000,
-    defaultVatBps: 800,
-    finishOnboarding: true,
-  });
-  return client;
-}
+const onboardedGlazier = () => onboardGlazier(env, `+48600000${phoneSeq++}`);
 
 describe('price list API (M3)', () => {
   it('lists items in price-list order with rules from the Cennik mockup', async () => {

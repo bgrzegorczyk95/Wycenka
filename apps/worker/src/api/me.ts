@@ -40,7 +40,12 @@ export async function getCompanyRow(db: Db, companyId: string): Promise<CompanyR
   return row;
 }
 
-export async function buildMe(db: Db, user: SessionUser, companyId: string): Promise<MeResponse> {
+export async function buildMe(
+  db: Db,
+  user: SessionUser,
+  companyId: string,
+  env: { MOCK_AI?: string | undefined },
+): Promise<MeResponse> {
   const row = await getCompanyRow(db, companyId);
   const month = warsawMonth(Date.now());
   const used = await db
@@ -60,9 +65,10 @@ export async function buildMe(db: Db, user: SessionUser, companyId: string): Pro
     usage: { used: used?.n ?? 0, limit: PLANS[row.plan].offersPerMonth, resetsAt: nextMonthStart(month) },
     needsOnboarding: row.onboardingStep !== null,
     onboardingStep: row.onboardingStep as OnboardingStep,
+    features: { mockAi: env.MOCK_AI === '1' },
   };
 }
 
 export const meRoutes = new Hono<AppEnv>().get('/', async (c) =>
-  c.json(await buildMe(c.var.db, c.var.user, c.var.companyId)),
+  c.json(await buildMe(c.var.db, c.var.user, c.var.companyId, c.env)),
 );

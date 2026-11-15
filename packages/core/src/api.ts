@@ -122,6 +122,8 @@ export interface MeResponse {
   usage: { used: number; limit: number | null; resetsAt: string };
   needsOnboarding: boolean;
   onboardingStep: OnboardingStep;
+  /** Server features: mockAi = offers can be prepared from the fixture (development). */
+  features: { mockAi: boolean };
 }
 
 // --- Price list (M3) ----------------------------------------------------------

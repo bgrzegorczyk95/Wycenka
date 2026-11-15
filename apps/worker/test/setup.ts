@@ -38,13 +38,56 @@ export async function createTestEnv() {
   return { env, dispose: () => proxy.dispose() };
 }
 
+/** Prices from the golden fixture / Cennik mockup (no „Brodzik walk-in” – it comes from the offer). */
+export const FIXTURE_PRICES: Record<string, number> = {
+  'glazurnik.skucie_plytek': 4500,
+  'glazurnik.gruntowanie': 800,
+  'glazurnik.hydroizolacja': 3500,
+  'glazurnik.plytki_standard_sciany': 14000,
+  'glazurnik.plytki_60x120_sciany': 18000,
+  'glazurnik.plytki_podloga': 16000,
+  'glazurnik.fugowanie_epoksydowe': 6000,
+  'glazurnik.listwa_naroznik': 4000,
+  'glazurnik.silikonowanie': 1500,
+  'glazurnik.stelaz_wc': 65000,
+};
+
+/** Logs in a new number and completes onboarding as the glazier from the fixture. */
+export async function onboardGlazier(env: Env, phone: string, companyPhone = ''): Promise<Client> {
+  const client = new Client(env);
+  await client.loginByPhone(phone);
+  const trades = await client.json<{ items: { templateKey: string }[] }>('POST', '/api/onboarding/trades', {
+    trades: ['glazurnik'],
+  });
+  await client.json('POST', '/api/onboarding/rates', {
+    items: trades.body.items.map((i) => ({
+      templateKey: i.templateKey,
+      priceGr: FIXTURE_PRICES[i.templateKey] ?? null,
+    })),
+  });
+  await client.json('PATCH', '/api/company', {
+    ownerName: 'Marek Nowak',
+    name: 'Usługi Glazurnicze Nowak',
+    nip: '',
+    phone: companyPhone,
+    email: '',
+    serviceArea: 'Warszawa i okolice',
+    defaultValidityDays: 14,
+    defaultDepositBps: 3000,
+    defaultVatBps: 800,
+    finishOnboarding: true,
+  });
+  return client;
+}
+
 /** Tiny HTTP client that keeps the session cookie, like a browser. */
 export class Client {
   cookie = '';
   constructor(private env: Env) {}
 
   async request(method: string, path: string, body?: unknown, headers: Record<string, string> = {}) {
-    const isRaw = body instanceof ArrayBuffer || body instanceof Uint8Array;
+    // Strings (e.g. form bodies) and binary data are sent as they are; objects as JSON.
+    const isRaw = typeof body === 'string' || body instanceof ArrayBuffer || body instanceof Uint8Array;
     const res = await app.request(
       `${APP_URL}${path}`,
       {

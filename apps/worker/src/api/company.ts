@@ -29,7 +29,7 @@ export const companyRoutes = new Hono<AppEnv>()
         .set({ name: ownerName, updatedAt: new Date(now) })
         .where(eq(userTable.id, user.id)),
     ]);
-    return c.json(await buildMe(db, { ...user, name: ownerName }, companyId));
+    return c.json(await buildMe(db, { ...user, name: ownerName }, companyId, c.env));
   })
 
   .put('/logo', async (c) => {
@@ -49,7 +49,7 @@ export const companyRoutes = new Hono<AppEnv>()
       .update(companies)
       .set({ logoKey: logoKey(companyId), updatedAt: Date.now() })
       .where(eq(companies.id, companyId));
-    return c.json(await buildMe(db, user, companyId));
+    return c.json(await buildMe(db, user, companyId, c.env));
   })
 
   .get('/logo', async (c) => {
@@ -72,5 +72,5 @@ export const companyRoutes = new Hono<AppEnv>()
       .update(companies)
       .set({ logoKey: null, updatedAt: Date.now() })
       .where(eq(companies.id, companyId));
-    return c.json(await buildMe(db, user, companyId));
+    return c.json(await buildMe(db, user, companyId, c.env));
   });

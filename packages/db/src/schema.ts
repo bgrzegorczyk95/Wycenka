@@ -1,4 +1,13 @@
-import type { AiQuestion, RoomGeometry, Scope, Unit } from '@wycenka/core';
+import type {
+  AiQuestion,
+  Extraction,
+  OfferItemOverride,
+  PriceListItem,
+  PricingRule,
+  RoomGeometry,
+  Scope,
+  Unit,
+} from '@wycenka/core';
 import { index, integer, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 
 /**
@@ -84,6 +93,12 @@ export const verification = sqliteTable(
 // ---------------------------------------------------------------------------
 // Business tables
 // ---------------------------------------------------------------------------
+
+export interface PriceSnapshot {
+  priceList: PriceListItem[];
+  rules: PricingRule[];
+  takenAt: number;
+}
 
 export const companies = sqliteTable('companies', {
   id: text('id').primaryKey(),
@@ -209,7 +224,15 @@ export const offers = sqliteTable(
     sendChannel: text('send_channel', { enum: ['sms', 'whatsapp', 'email', 'link'] }),
     aiQuestions: text('ai_questions', { mode: 'json' }).$type<AiQuestion[]>(),
     aiAnswers: text('ai_answers', { mode: 'json' }).$type<Record<string, string>>(),
-    aiExtraction: text('ai_extraction', { mode: 'json' }),
+    aiExtraction: text('ai_extraction', { mode: 'json' }).$type<Extraction>(),
+    /** Locked user changes (pricing engine overrides) – never overwritten by re-pricing. */
+    overrides: text('overrides', { mode: 'json' }).$type<OfferItemOverride[]>().notNull().default([]),
+    /** Price list and rules at pricing time (docs/04: changes in the price list do not change offers). */
+    priceSnapshot: text('price_snapshot', { mode: 'json' }).$type<PriceSnapshot>(),
+    /** Combined transcript of all recordings (input for „sprawdź źródło”). */
+    transcript: text('transcript'),
+    recordingMs: integer('recording_ms'),
+    processingStep: text('processing_step', { enum: ['uploaded', 'transcribed', 'matched', 'priced'] }),
     promptVersion: text('prompt_version'),
     processingError: text('processing_error'),
     countedForPlanMonth: text('counted_for_plan_month'), // '2026-11'

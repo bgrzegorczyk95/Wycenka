@@ -27,7 +27,9 @@
 
   "queues": {
     "producers": [{ "binding": "JOBS", "queue": "wycenka-jobs-dev" }],
-    "consumers": [{ "queue": "wycenka-jobs-dev", "max_batch_size": 5, "max_retries": 3 }],
+    "consumers": [
+      { "queue": "wycenka-jobs-dev", "max_batch_size": 5, "max_batch_timeout": 1, "max_retries": 3 },
+    ],
   },
 
   // Hourly: reminders. Daily 03:00 Europe/Warsaw (02:00 UTC in winter): retention and expiry.

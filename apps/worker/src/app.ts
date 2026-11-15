@@ -1,9 +1,11 @@
 import { Hono } from 'hono';
 import { companyRoutes } from './api/company';
 import { meRoutes } from './api/me';
+import { offerRoutes } from './api/offers';
 import { onboardingRoutes } from './api/onboarding';
 import { priceListRoutes } from './api/priceList';
 import { createAuth } from './auth';
+import { clientPageRoutes } from './client-page/routes';
 import { fail, type AppEnv } from './http';
 import { requireSession } from './session';
 
@@ -14,20 +16,21 @@ app.get('/api/health', (c) => c.json({ ok: true, service: 'wycenka' }));
 // Better Auth: phone (SMS) and e-mail one-time codes, sessions in cookies.
 app.on(['GET', 'POST'], '/api/auth/*', (c) => createAuth(c.env).handler(c.req.raw));
 
-app.use('/api/me', requireSession);
-app.use('/api/me/*', requireSession);
-app.use('/api/onboarding/*', requireSession);
-app.use('/api/company', requireSession);
-app.use('/api/company/*', requireSession);
-app.use('/api/price-list', requireSession);
-app.use('/api/price-list/*', requireSession);
+for (const path of ['/api/me', '/api/onboarding', '/api/company', '/api/price-list', '/api/offers']) {
+  app.use(path, requireSession);
+  app.use(`${path}/*`, requireSession);
+}
 
 app.route('/api/me', meRoutes);
 app.route('/api/onboarding', onboardingRoutes);
 app.route('/api/company', companyRoutes);
 app.route('/api/price-list', priceListRoutes);
+app.route('/api/offers', offerRoutes);
 
 app.all('/api/*', (c) => fail(c, 404, 'not_found', 'Nie znaleziono.'));
+
+// Client offer page (server-rendered, no login, works without JS).
+app.route('/o', clientPageRoutes);
 
 app.onError((err, c) => {
   // No request bodies or personal data in logs (RODO).
