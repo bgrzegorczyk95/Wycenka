@@ -166,7 +166,7 @@ export const offerRoutes = new Hono<AppEnv>()
     if (!row) return fail(c, 404, 'not_found', NOT_FOUND);
     const company = await getCompanyRow(c.var.db, c.var.companyId);
     const nonce = newNonce();
-    securityHeaders(c, nonce);
+    securityHeaders(c, nonce, { framable: true });
     return renderOffer(
       c,
       buildView(row, company),
@@ -218,10 +218,16 @@ export const offerRoutes = new Hono<AppEnv>()
     if (row instanceof Response) return row;
     const answers = { ...(row.aiAnswers ?? {}), ...parsed.data.answers };
     // Re-run extraction with the answers (no speech-to-text again). Mock until M5.
-    const extraction =
+    const fresh =
       c.env.MOCK_AI === '1' && row.priceSnapshot
         ? mockExtraction(row.priceSnapshot.priceList, answers)
         : row.aiExtraction;
+    // Answered questions stay with the offer („Pytanie AI: „…” · Ty: Tak”); new ones are added.
+    const answered = (row.aiExtraction?.questions ?? []).filter((q) => answers[q.id] !== undefined);
+    const extraction = fresh && {
+      ...fresh,
+      questions: [...answered, ...fresh.questions.filter((q) => !answered.some((a) => a.id === q.id))],
+    };
     return update(c, row, { aiAnswers: answers, aiExtraction: extraction });
   })
 

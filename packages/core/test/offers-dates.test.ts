@@ -50,6 +50,13 @@ describe('offers', () => {
     expect(sendDeepLink('email', 'a', to, 'Oferta')).toBe('mailto:anna%40example.com?subject=Oferta&body=a');
     expect(sendDeepLink('email', 'a', { phone: null, email: null }, 'O')).toBe('mailto:?subject=O&body=a');
     expect(sendDeepLink('sms', 'a', { phone: null, email: null }, 'S')).toBeNull();
+    // Numbers typed without the country code get +48
+    expect(sendDeepLink('sms', 'a', { phone: '600 111 222', email: null }, 'S')).toBe(
+      'sms:+48600111222?&body=a',
+    );
+    expect(sendDeepLink('whatsapp', 'a', { phone: '+49 151 1234567', email: null }, 'S')).toBe(
+      'https://wa.me/491511234567?text=a',
+    );
     expect(sendDeepLink('link', 'a', to, 'S')).toBeNull();
   });
 

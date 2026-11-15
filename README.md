@@ -48,6 +48,13 @@ w konsoli `pnpm dev`, np. `[dev sms] to +48•••••0000: Wycenka: kod log
 Limit to 3 kody na 10 minut z jednego IP; żeby go wyczyścić lokalnie:
 `cd apps/worker && npx wrangler d1 execute DB --local --command "delete from rate_limit"`.
 
+**Oferta od początku do końca (lokalnie, bez nagrywania):** po zalogowaniu i onboardingu (glazurnik) kliknij
+„Nowa oferta”, wpisz klienta i „Gotowe – przygotuj ofertę”. W trybie `MOCK_AI=1` (domyślnie w dev) AI zastępuje
+złoty przykład z `docs/fixtures` – łazienka 3 × 2 m z cenami z Twojego cennika. Odpowiedz „Tak” na pytanie AI,
+wpisz cenę brodzika (np. 900), „Dalej: podgląd i wysyłka” → „Wyślij ofertę” albo „Kopiuj link”. Link
+`http://localhost:5173/o/…` otwiera stronę klienta (akceptacja, pytanie, PDF przez druk przeglądarki).
+Bez nagrywania ofertę można też złożyć ręcznie: „Uzupełnij ręcznie” → „+ Dodaj pozycję”.
+
 Przed commitem: `pnpm test`, `pnpm typecheck`, `pnpm lint`. Plik `apps/worker/.dev.vars` jest w `.gitignore`.
 
 Struktura: `apps/web` (PWA), `apps/worker` (Hono: API, strona klienta, kolejka, cron),

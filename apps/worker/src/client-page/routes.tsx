@@ -92,14 +92,15 @@ export function renderOffer(
   return c.html(`<!doctype html>${page.toString()}`);
 }
 
-export function securityHeaders(c: Context, nonce: string) {
+/** `framable`: the contractor's preview is shown in an iframe of the app (same origin only). */
+export function securityHeaders(c: Context, nonce: string, { framable = false } = {}) {
   c.header('X-Robots-Tag', 'noindex, nofollow');
   c.header('Referrer-Policy', 'no-referrer');
   c.header('Cache-Control', 'no-store');
   c.header('X-Content-Type-Options', 'nosniff');
   c.header(
     'Content-Security-Policy',
-    `default-src 'none'; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'`,
+    `default-src 'none'; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors ${framable ? "'self'" : "'none'"}`,
   );
 }
 

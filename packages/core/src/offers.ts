@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { RoomGeometry } from './geometry';
+import { normalizePlPhone } from './phone';
 import type { PricedItem, PricingWarning } from './pricing';
 import { type AiQuestion, Unit } from './schemas';
 
@@ -182,7 +183,8 @@ export function sendDeepLink(
   subject: string,
 ): string | null {
   const text = encodeURIComponent(message);
-  const digits = to.phone?.replace(/\D/g, '') ?? '';
+  // „600 111 222” → 48600111222; foreign numbers are used as typed.
+  const digits = to.phone ? (normalizePlPhone(to.phone)?.slice(1) ?? to.phone.replace(/\D/g, '')) : '';
   switch (channel) {
     case 'sms':
       return digits ? `sms:+${digits}?&body=${text}` : null;

@@ -44,6 +44,18 @@ export const router = createBrowserRouter([
             lazy: () => import('./routes/OffersPage').then((m) => ({ Component: m.OffersPage })),
           },
           {
+            path: '/oferty/nowa',
+            lazy: () => import('./routes/offers/NewOfferPage').then((m) => ({ Component: m.NewOfferPage })),
+          },
+          {
+            path: '/oferty/:id',
+            lazy: () => import('./routes/offers/OfferPage').then((m) => ({ Component: m.OfferPage })),
+          },
+          {
+            path: '/oferty/:id/wysylka',
+            lazy: () => import('./routes/offers/SendPage').then((m) => ({ Component: m.SendPage })),
+          },
+          {
             path: '/cennik',
             lazy: () => import('./routes/PriceListPage').then((m) => ({ Component: m.PriceListPage })),
           },

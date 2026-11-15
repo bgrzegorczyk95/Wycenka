@@ -96,7 +96,10 @@ describe('offer flow (golden example through the API)', () => {
       'Montaż brodzika walk-in',
     ]);
     expect(detail.items[2]).toMatchObject({ sourceKind: 'ai_answer', sourceQuestionId: 'q1' });
-    expect(detail.questions).toEqual([]);
+    // The answered question stays with its answer (summary line on the items screen)
+    expect(detail.questions).toEqual([
+      expect.objectContaining({ id: 'q1', text: 'Czy płytki także na podłodze?', answer: 'Tak' }),
+    ]);
     expect(detail.totals).toMatchObject({
       netGr: 827000,
       vatGr: 66160,
