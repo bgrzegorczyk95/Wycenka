@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { isValidNip, normalizeNip } from './nip';
 import { normalizePlPhone } from './phone';
-import { Unit } from './schemas';
+import { PricingRuleKind, Scope, Unit } from './schemas';
 
 /**
  * Request/response shapes shared by the worker (validation) and the web app (forms, types).
@@ -123,3 +123,67 @@ export interface MeResponse {
   needsOnboarding: boolean;
   onboardingStep: OnboardingStep;
 }
+
+// --- Price list (M3) ----------------------------------------------------------
+
+export interface PriceListEntry {
+  id: string;
+  category: string;
+  name: string;
+  offerName: string | null;
+  unit: Unit;
+  priceGr: number;
+  measure: Scope;
+  source: 'template' | 'manual' | 'import' | 'offer';
+  /** Added from an offer recently („nowa z oferty”). */
+  isNew: boolean;
+  sortOrder: number;
+}
+
+export interface PriceListRule {
+  kind: PricingRuleKind;
+  label: string;
+  bps: number | null;
+  amountGr: number | null;
+  thresholdMilli: number | null;
+  enabled: boolean;
+}
+
+export interface PriceListResponse {
+  trades: { trade: string; label: string }[];
+  items: PriceListEntry[];
+  rules: PriceListRule[];
+  /** Banner „Dodano z oferty …”. */
+  recentFromOffers: { itemId: string; name: string; unit: Unit; priceGr: number; offerLabel: string }[];
+}
+
+const itemName = z.string().trim().min(2, 'Wpisz nazwę pozycji.').max(120);
+const category = z.string().trim().min(1, 'Wpisz kategorię.').max(60);
+const price = z.number().int('Cena w groszach.').nonnegative('Cena nie może być ujemna.').max(100_000_000);
+
+export const PriceListItemInput = z.object({
+  name: itemName,
+  category,
+  unit: Unit,
+  priceGr: price,
+  offerName: z.preprocess(emptyToNull, z.string().trim().max(120).nullable()).optional(),
+  measure: Scope.optional(),
+});
+export type PriceListItemInput = z.input<typeof PriceListItemInput>;
+
+export const PriceListItemPatch = PriceListItemInput.partial();
+export type PriceListItemPatch = z.input<typeof PriceListItemPatch>;
+
+export const PricingRuleInput = z.object({
+  enabled: z.boolean(),
+  bps: z.number().int().min(0).max(10_000).nullable().optional(),
+  amountGr: price.nullable().optional(),
+  thresholdMilli: z.number().int().min(0).max(20_000).nullable().optional(),
+});
+export type PricingRuleInput = z.input<typeof PricingRuleInput>;
+
+export const AddTradeInput = z.object({
+  trade: z.string().min(1),
+  items: z.array(z.object({ templateKey: z.string().min(1), priceGr: price.nullable() })).max(200),
+});
+export type AddTradeInput = z.input<typeof AddTradeInput>;
