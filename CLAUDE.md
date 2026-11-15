@@ -71,6 +71,10 @@ Uwagi do narzędzi:
 - TypeScript przypięty do 6.0.x – typescript-eslint nie wspiera jeszcze TS 7 (natywnego).
 - pnpm blokuje skrypty instalacyjne; zatwierdzone są tylko `esbuild` i `workerd` (`allowBuilds` w `pnpm-workspace.yaml`).
 - Bindingi `AI` (M5) i `BROWSER` (M6) dojdą później – działają tylko zdalnie i wymagają konta Cloudflare.
+- Testy API (`apps/worker/test`) działają na lokalnym D1/R2 przez `getPlatformProxy` z wranglera; kody logowania
+  trafiają do `devOutbox` (`apps/worker/src/notify/outbox.ts`) zamiast do SMS/e-maila, gdy brak kluczy dostawców.
+- Szablony branż: `packages/core/src/templates/*.json` (bez cen). Glazurnik z fixture, pozostałe to propozycje
+  do akceptacji właściciela.
 
 ## Jak pracujemy
 

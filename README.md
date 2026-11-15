@@ -36,12 +36,19 @@ logika AI i wyceny, API, plan prac i złoty przykład do testów.
 ```
 npm i -g pnpm        # jeśli nie masz pnpm (corepack na Windows wymaga uprawnień administratora)
 pnpm install
+cp apps/worker/.dev.vars.example apps/worker/.dev.vars   # i wpisz BETTER_AUTH_SECRET (komenda w pliku)
 pnpm db:migrate      # lokalna baza D1 (Miniflare)
 pnpm dev             # aplikacja: http://localhost:5173, Worker: http://localhost:8787
 ```
 
-Przed commitem: `pnpm test`, `pnpm typecheck`, `pnpm lint`. Sekrety lokalne: skopiuj
-`apps/worker/.dev.vars.example` do `apps/worker/.dev.vars` (plik jest w `.gitignore`).
+Konto Cloudflare nie jest potrzebne do pracy lokalnej – D1, R2 i kolejki działają na komputerze.
+
+**Logowanie lokalnie:** bez `SMSAPI_TOKEN` / `RESEND_API_KEY` kody nie są wysyłane, tylko wypisywane
+w konsoli `pnpm dev`, np. `[dev sms] to +48•••••0000: Wycenka: kod logowania 123456…`.
+Limit to 3 kody na 10 minut z jednego IP; żeby go wyczyścić lokalnie:
+`cd apps/worker && npx wrangler d1 execute DB --local --command "delete from rate_limit"`.
+
+Przed commitem: `pnpm test`, `pnpm typecheck`, `pnpm lint`. Plik `apps/worker/.dev.vars` jest w `.gitignore`.
 
 Struktura: `apps/web` (PWA), `apps/worker` (Hono: API, strona klienta, kolejka, cron),
 `packages/core` (silnik wyceny, bez zależności od Cloudflare), `packages/db` (Drizzle + migracje D1).

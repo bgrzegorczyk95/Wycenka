@@ -1,6 +1,7 @@
 import { FileText, List, User } from 'lucide-react';
 import type { ComponentType } from 'react';
 import { NavLink, Outlet } from 'react-router';
+import { useMe } from '../lib/session';
 
 interface NavItem {
   to: string;
@@ -28,10 +29,12 @@ export function AppLayout() {
 }
 
 function Sidebar() {
+  const { data: me } = useMe();
   return (
     <aside className="hidden w-[220px] shrink-0 flex-col gap-6 border-r border-line bg-surface px-4 py-7 lg:flex">
       <div className="flex flex-col gap-0.5 px-2">
         <span className="font-display text-[22px] font-bold text-accent">Wycenka</span>
+        {me && <span className="text-[13px] text-muted">{me.company.name}</span>}
       </div>
       <nav aria-label="Menu główne" className="flex flex-col gap-1">
         {navItems.map((item) => (

@@ -1,11 +1,14 @@
 import { Mic, Plus } from 'lucide-react';
 import { Button } from '../components/Button';
 import { PageHeader } from '../components/PageHeader';
+import { useMe } from '../lib/session';
 
 export function OffersPage() {
+  const { data: me } = useMe();
   return (
     <>
       <PageHeader
+        eyebrow={me?.company.name}
         title="Oferty"
         actions={
           <div className="hidden lg:block">
