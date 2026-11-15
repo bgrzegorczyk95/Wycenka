@@ -47,4 +47,37 @@
   //   "browser": { "binding": "BROWSER" }       – M6 (PDF)
 
   "observability": { "enabled": true },
+
+  "env": {
+    // Test deployment: `pnpm deploy:staging` → https://wycenka-staging.<subdomain>.workers.dev
+    "staging": {
+      "name": "wycenka-staging",
+      "workers_dev": true,
+      "preview_urls": false,
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "wycenka-staging",
+          "database_id": "82b984c8-1479-4b40-8caa-02277d134757", // jurisdiction: eu
+          "migrations_dir": "../../packages/db/migrations",
+        },
+      ],
+      // R2 is not enabled on the account yet – logo upload is off until "r2_buckets" is added here.
+      "queues": {
+        "producers": [{ "binding": "JOBS", "queue": "wycenka-jobs-staging" }],
+        "consumers": [
+          { "queue": "wycenka-jobs-staging", "max_batch_size": 5, "max_batch_timeout": 1, "max_retries": 3 },
+        ],
+      },
+      // No cron jobs yet (reminders come with M7) – do not use the account's cron quota.
+      "triggers": { "crons": [] },
+      "vars": {
+        "APP_URL": "https://wycenka-staging.quot-app.workers.dev",
+        "ENVIRONMENT": "staging",
+        // No speech-to-text / LLM yet: „Gotowe – przygotuj ofertę” uses the fixture (M5 replaces it).
+        "MOCK_AI": "1",
+        "MOCK_PDF": "1",
+      },
+    },
+  },
 }

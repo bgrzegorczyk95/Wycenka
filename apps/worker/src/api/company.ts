@@ -44,6 +44,7 @@ export const companyRoutes = new Hono<AppEnv>()
     if (body.byteLength > LOGO_MAX_BYTES) return fail(c, 413, 'logo_size', 'Logo może mieć najwyżej 2 MB.');
 
     const { db, companyId, user } = c.var;
+    if (!c.env.FILES) return fail(c, 503, 'files_unavailable', 'Wgrywanie logo będzie dostępne wkrótce.');
     await c.env.FILES.put(logoKey(companyId), body, { httpMetadata: { contentType: type } });
     await db
       .update(companies)
@@ -54,7 +55,7 @@ export const companyRoutes = new Hono<AppEnv>()
 
   .get('/logo', async (c) => {
     const company = await getCompanyRow(c.var.db, c.var.companyId);
-    const object = company.logoKey ? await c.env.FILES.get(company.logoKey) : null;
+    const object = company.logoKey && c.env.FILES ? await c.env.FILES.get(company.logoKey) : null;
     if (!object) return fail(c, 404, 'not_found', 'Brak logo.');
     return new Response(object.body, {
       headers: {
@@ -67,7 +68,7 @@ export const companyRoutes = new Hono<AppEnv>()
 
   .delete('/logo', async (c) => {
     const { db, companyId, user } = c.var;
-    await c.env.FILES.delete(logoKey(companyId));
+    await c.env.FILES?.delete(logoKey(companyId));
     await db
       .update(companies)
       .set({ logoKey: null, updatedAt: Date.now() })

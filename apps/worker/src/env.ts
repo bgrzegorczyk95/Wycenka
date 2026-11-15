@@ -1,6 +1,7 @@
 export interface Env {
   DB: D1Database;
-  FILES: R2Bucket;
+  /** R2 – optional until R2 is enabled on the account (staging may run without it; logo upload is then off). */
+  FILES?: R2Bucket;
   JOBS: Queue<JobMessage>;
   ASSETS: Fetcher;
   APP_URL: string;

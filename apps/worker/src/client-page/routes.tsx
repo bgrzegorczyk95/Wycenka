@@ -300,7 +300,7 @@ export const clientPageRoutes = new Hono<ClientEnv>()
     const db = getDb(c.env);
     const found = await loadPublic(db, c.req.param('token'));
     if (!found || !PLANS[found.company.plan].logo || !found.company.logoKey) return c.body(null, 404);
-    const object = await c.env.FILES.get(found.company.logoKey);
+    const object = c.env.FILES ? await c.env.FILES.get(found.company.logoKey) : null;
     if (!object) return c.body(null, 404);
     return new Response(object.body, {
       headers: {
