@@ -15,7 +15,7 @@ import {
   type SendResponse,
 } from '@wycenka/core';
 import { clients, companies, offerEvents, offers, priceListItems } from '@wycenka/db';
-import { and, desc, eq, sql } from 'drizzle-orm';
+import { and, desc, eq, isNull, sql } from 'drizzle-orm';
 import type { BatchItem } from 'drizzle-orm/batch';
 import { Hono, type Context } from 'hono';
 import { mockExtraction } from '../ai/mock';
@@ -85,17 +85,21 @@ export const offerRoutes = new Hono<AppEnv>()
     const { db, companyId } = c.var;
     const status = c.req.query('status');
     const q = normalizeForQuote(c.req.query('q') ?? '');
-    const rows = await db
+    const query = db
       .select({ offer: offers, client: clients })
       .from(offers)
       .leftJoin(clients, and(eq(clients.id, offers.clientId), eq(clients.companyId, offers.companyId)))
-      .where(eq(offers.companyId, companyId))
-      .orderBy(desc(offers.updatedAt))
-      .limit(200)
-      .all();
+      .where(
+        and(
+          eq(offers.companyId, companyId),
+          status ? eq(offers.status, status as OfferRow['status']) : undefined,
+        ),
+      )
+      .orderBy(desc(offers.updatedAt));
+    // Search is done in code (Polish diacritics), so it has to see all offers, not the latest 200.
+    const rows = await (q ? query.all() : query.limit(200).all());
     const list = rows
       .map((r) => toListItem(r.offer, r.client))
-      .filter((o) => !status || o.status === status)
       .filter(
         (o) =>
           !q || normalizeForQuote(`${o.title} ${o.clientName ?? ''} ${o.clientAddress ?? ''}`).includes(q),
@@ -169,7 +173,7 @@ export const offerRoutes = new Hono<AppEnv>()
     securityHeaders(c, nonce, { framable: true });
     return renderOffer(
       c,
-      buildView(row, company),
+      buildView(row, company, '/api/company/logo'),
       c.req.query('print') === '1' ? 'print' : 'preview',
       nonce,
       {
@@ -198,7 +202,6 @@ export const offerRoutes = new Hono<AppEnv>()
           status: 'processing',
           processingStep: 'uploaded',
           processingError: null,
-          countedForPlanMonth: row.countedForPlanMonth ?? warsawMonth(now),
           updatedAt: now,
         })
         .where(and(eq(offers.id, row.id), eq(offers.companyId, row.companyId))),
@@ -309,7 +312,24 @@ export const offerRoutes = new Hono<AppEnv>()
     }
 
     const extra: BatchItem<'sqlite'>[] = [];
-    if (saveToPriceList && current.priceListItemId === null && patch.unitPriceGr != null) {
+    const name = patch.name ?? current.name;
+    // The offer keeps its snapshot, so the item stays „missing” here – do not add it to the price list twice.
+    const alreadySaved =
+      saveToPriceList &&
+      (await c.var.db
+        .select({ id: priceListItems.id })
+        .from(priceListItems)
+        .where(
+          and(
+            eq(priceListItems.companyId, row.companyId),
+            eq(priceListItems.sourceOfferId, row.id),
+            eq(priceListItems.name, name),
+            eq(priceListItems.unit, current.unit),
+            isNull(priceListItems.archivedAt),
+          ),
+        )
+        .get());
+    if (saveToPriceList && !alreadySaved && current.priceListItemId === null && patch.unitPriceGr != null) {
       const now = Date.now();
       const snapshot = row.priceSnapshot?.priceList ?? [];
       // Category: where this unit already lives in the price list (e.g. „Montaż” for kpl), else „Inne”.
@@ -319,7 +339,7 @@ export const offerRoutes = new Hono<AppEnv>()
           id: crypto.randomUUID(),
           companyId: row.companyId,
           category: sameUnit?.category ?? 'Inne',
-          name: patch.name ?? current.name,
+          name,
           unit: current.unit,
           priceGr: patch.unitPriceGr,
           measure: current.scope ?? 'manual',
@@ -363,6 +383,10 @@ export const offerRoutes = new Hono<AppEnv>()
     if (!row) return fail(c, 404, 'not_found', NOT_FOUND);
     if (row.status === 'accepted') return fail(c, 409, 'accepted', 'Oferta jest już zaakceptowana.');
     if (row.status === 'processing') return fail(c, 409, 'processing', 'AI jeszcze układa ofertę.');
+    // A rejected or expired offer cannot be revived by resending – the client would still see „nieaktualna”.
+    if (isSentStatus(row.status) && isExpired(row)) {
+      return fail(c, 409, 'not_current', 'Ta oferta jest nieaktualna. Przygotuj nową ofertę.');
+    }
     const result = computeOffer(row);
     if (result.missingPriceCount > 0) {
       return fail(c, 422, 'missing_prices', 'Uzupełnij ceny wszystkich pozycji, zanim wyślesz ofertę.');
@@ -404,6 +428,8 @@ export const offerRoutes = new Hono<AppEnv>()
     const row = await loadOffer(db, companyId, c.req.param('id'));
     if (!row) return fail(c, 404, 'not_found', NOT_FOUND);
     if (row.status === 'accepted') return fail(c, 409, 'accepted', 'Oferta jest już zaakceptowana.');
+    // A rejected offer is visible on /o/:token – only one the contractor has sent can be rejected (rule 4).
+    if (!isSentStatus(row.status)) return fail(c, 409, 'not_sent', 'Oferta nie została jeszcze wysłana.');
     await db.batch([
       db
         .update(offers)

@@ -36,7 +36,15 @@ export function isExpired(row: OfferRow, now = Date.now()): boolean {
   return row.validUntil !== null && row.validUntil < warsawDate(now);
 }
 
-export function buildView(row: OfferRow, company: CompanyRow): ClientOfferView {
+/**
+ * `logoPath`: the public `/o/:token/logo` only serves sent offers, so the contractor's preview
+ * passes the authenticated company logo route instead.
+ */
+export function buildView(
+  row: OfferRow,
+  company: CompanyRow,
+  logoPath = `/o/${row.token}/logo`,
+): ClientOfferView {
   const plan = PLANS[company.plan];
   return {
     token: row.token!,
@@ -56,7 +64,7 @@ export function buildView(row: OfferRow, company: CompanyRow): ClientOfferView {
       serviceArea: company.serviceArea,
       initials: initials(company.name),
       // Logo on the offer is a Pro feature (docs/01 „Plany”).
-      logoUrl: plan.logo && company.logoKey ? `/o/${row.token}/logo?v=${company.updatedAt}` : null,
+      logoUrl: plan.logo && company.logoKey ? `${logoPath}?v=${company.updatedAt}` : null,
     },
     showFooter: plan.footer,
     result: computeOffer(row),
@@ -158,19 +166,22 @@ export const clientPageRoutes = new Hono<ClientEnv>()
     if (!found || BOT_UA.test(ua) || found.row.status !== 'sent') return c.body(null, 204);
     const now = Date.now();
     const { row } = found;
-    await runBatch(db, [
-      db
-        .update(offers)
-        .set({ status: 'opened', openedAt: now, updatedAt: now })
-        .where(and(eq(offers.id, row.id), eq(offers.status, 'sent'))),
-      db.insert(offerEvents).values({
+    // Only the request that actually flips the status records the event (two tabs, double beacon).
+    const changed = await db
+      .update(offers)
+      .set({ status: 'opened', openedAt: now, updatedAt: now })
+      .where(and(eq(offers.id, row.id), eq(offers.status, 'sent')))
+      .returning({ id: offers.id })
+      .get();
+    if (changed) {
+      await db.insert(offerEvents).values({
         id: crypto.randomUUID(),
         offerId: row.id,
         companyId: row.companyId,
         type: 'opened',
         createdAt: now,
-      }),
-    ]);
+      });
+    }
     return c.body(null, 204);
   })
 
@@ -186,11 +197,15 @@ export const clientPageRoutes = new Hono<ClientEnv>()
     const result = computeOffer(row);
     // Evidence of acceptance (docs/03): time, hashed IP, user agent, gross amount at that moment.
     const ip = c.req.header('cf-connecting-ip') ?? '';
+    // Guarded on the status we checked: a double submit must not overwrite acceptedAt or add a second event.
+    const changed = await db
+      .update(offers)
+      .set({ status: 'accepted', acceptedAt: now, updatedAt: now })
+      .where(and(eq(offers.id, row.id), eq(offers.companyId, row.companyId), eq(offers.status, row.status)))
+      .returning({ id: offers.id })
+      .get();
+    if (!changed) return c.redirect(`/o/${token}`, 303);
     await runBatch(db, [
-      db
-        .update(offers)
-        .set({ status: 'accepted', acceptedAt: now, updatedAt: now })
-        .where(and(eq(offers.id, row.id), eq(offers.companyId, row.companyId))),
       db.insert(offerEvents).values({
         id: crypto.randomUUID(),
         offerId: row.id,

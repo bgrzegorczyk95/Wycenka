@@ -33,8 +33,10 @@ function sourceLine(item: PricedItem): string {
   }
 }
 
-const recording = (ms: number) =>
-  `${Math.floor(ms / 60000)}:${String(Math.round((ms % 60000) / 1000)).padStart(2, '0')}`;
+const recording = (ms: number) => {
+  const s = Math.round(ms / 1000);
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+};
 
 /** „3,0 × 2,0 m, wysokość 2,6 m · ściany 24,4 m² (po odjęciu drzwi) · podłoga 6,0 m²” */
 function geometryLine(g: OfferDetail['geometry'][number]): string {
@@ -83,7 +85,8 @@ function MissingPriceCard({
   const [error, setError] = useState<string | null>(null);
 
   async function commit(value: string) {
-    if (value.trim() === '') return;
+    // Enter and the following blur must not save the price (and the price-list item) twice.
+    if (value.trim() === '' || mutations.patchItem.isPending) return;
     const unitPriceGr = parsePLN(value);
     if (unitPriceGr === null) return setError('Wpisz cenę, np. 900 albo 900,50.');
     setError(null);

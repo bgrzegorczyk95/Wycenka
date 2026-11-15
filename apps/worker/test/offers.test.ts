@@ -256,6 +256,14 @@ describe('offer flow (golden example through the API)', () => {
     expect((await client.request('POST', `/api/offers/${ready.id}/send`, { channel: 'sms' })).status).toBe(
       409,
     );
+
+    // A rejected offer cannot be resent (the client would still see „nieaktualna”)
+    expect((await client.request('POST', `/api/offers/${second.id}/reject`, {})).status).toBe(200);
+    const resend = await client.json<{ error: { code: string } }>('POST', `/api/offers/${second.id}/send`, {
+      channel: 'sms',
+    });
+    expect(resend.status).toBe(409);
+    expect(resend.body.error.code).toBe('not_current');
   });
 
   it('client questions: event, honeypot, 5 per day', async () => {

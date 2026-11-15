@@ -19,7 +19,7 @@ import { PriceInput } from '../../components/PriceInput';
 import { UNITS } from '../../components/useRatesEditor';
 import { errorMessage } from '../../lib/api';
 import type { useOfferMutations } from '../../lib/offers';
-import { metres, parseQty, qtyInputText } from '../../lib/price';
+import { parseQty, qtyInputText } from '../../lib/price';
 import { usePriceList } from '../../lib/priceList';
 
 type Mutations = ReturnType<typeof useOfferMutations>;
@@ -373,7 +373,8 @@ function GeometryForm({
   onClose: () => void;
   mutations: Mutations;
 }) {
-  const toText = (mm: number | null) => (mm === null ? '' : metres(mm));
+  // Exact value (up to mm), so saving without changes does not round the dimensions.
+  const toText = (mm: number | null) => (mm === null ? '' : qtyInputText(mm));
   const [rooms, setRooms] = useState(() =>
     offer.geometry.map((g) => ({
       id: g.roomId,

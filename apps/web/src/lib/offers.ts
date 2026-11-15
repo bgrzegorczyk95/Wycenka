@@ -88,7 +88,7 @@ export function useOfferMutations(id: string) {
     reject: useMutation({ mutationFn: () => call('/reject', 'POST', {}), onSuccess }),
     send: useMutation({
       mutationFn: (channel: SendChannel) =>
-        api<SendResponse>(`/api/offers/${id}/send`, { method: 'POST', body: { channel } }),
+        api<SendResponse>(`/api/offers/${id}/send`, { method: 'POST', body: { channel }, keepalive: true }),
       onSuccess: (r) => onSuccess(r.offer),
     }),
   };

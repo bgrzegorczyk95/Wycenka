@@ -72,22 +72,32 @@ function SendForm({ offer }: { offer: OfferDetail }) {
     }
   }
 
+  /**
+   * The app (SMS / WhatsApp / e-mail / share sheet) must open inside the tap: iOS Safari blocks popups,
+   * share and clipboard after an await. The link is known before sending, so we open first and record
+   * the „sent” status in parallel (keepalive survives leaving the page for the SMS app).
+   */
   async function send() {
     setError(null);
+    const to = { phone: offer.client?.phone ?? null, email: offer.client?.email ?? null };
+    const deepLink = sendDeepLink(channel, message, to, `Oferta: ${offer.title}`);
+    let opened: Promise<unknown> = Promise.resolve();
+    let copied = false;
+    // The message goes from the contractor's own phone apps (docs/01 „Czego NIE robimy”).
+    if (deepLink) {
+      if (channel === 'whatsapp') window.open(deepLink, '_blank', 'noopener');
+      else window.location.href = deepLink;
+    } else if (navigator.share) {
+      opened = navigator
+        .share({ title: `Oferta: ${offer.title}`, text: message, url: offer.link })
+        .catch(() => undefined);
+    } else {
+      opened = navigator.clipboard?.writeText(message) ?? Promise.resolve();
+      copied = true;
+    }
     try {
-      const { link } = await mutations.send.mutateAsync(channel);
-      const to = { phone: offer.client?.phone ?? null, email: offer.client?.email ?? null };
-      const deepLink = sendDeepLink(channel, message, to, `Oferta: ${offer.title}`);
-      if (deepLink) {
-        // The message goes from the contractor's own phone apps (docs/01 „Czego NIE robimy”).
-        if (channel === 'whatsapp') window.open(deepLink, '_blank', 'noopener');
-        else window.location.href = deepLink;
-      } else if (navigator.share) {
-        await navigator
-          .share({ title: `Oferta: ${offer.title}`, text: message, url: link })
-          .catch(() => undefined);
-      } else {
-        await navigator.clipboard?.writeText(message);
+      await Promise.all([mutations.send.mutateAsync(channel), opened]);
+      if (copied) {
         setNotice('Brak numeru klienta – skopiowaliśmy wiadomość z linkiem. Wklej ją klientowi.');
         return;
       }
@@ -99,9 +109,10 @@ function SendForm({ offer }: { offer: OfferDetail }) {
 
   async function copyLink() {
     setError(null);
+    // Clipboard first, inside the tap (see send()).
+    const copied = navigator.clipboard?.writeText(offer.link) ?? Promise.resolve();
     try {
-      const { link } = await mutations.send.mutateAsync('link');
-      await navigator.clipboard?.writeText(link);
+      await Promise.all([mutations.send.mutateAsync('link'), copied]);
       setNotice('Link skopiowany. Wklej go klientowi.');
     } catch (e) {
       setError(errorMessage(e));

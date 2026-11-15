@@ -19,15 +19,21 @@ interface RequestOptions {
   body?: unknown;
   /** Raw body (e.g. an image) sent with its own content type. */
   raw?: Blob;
+  /** Finish the request even if the page is left (e.g. the SMS app opens). */
+  keepalive?: boolean;
 }
 
 /** JSON API client for /api/*. Errors are thrown as ApiRequestError with a Polish message. */
-export async function api<T>(path: string, { method = 'GET', body, raw }: RequestOptions = {}): Promise<T> {
+export async function api<T>(
+  path: string,
+  { method = 'GET', body, raw, keepalive }: RequestOptions = {},
+): Promise<T> {
   let res: Response;
   try {
     res = await fetch(path, {
       method,
       credentials: 'same-origin',
+      ...(keepalive ? { keepalive: true } : {}),
       headers: raw
         ? { 'Content-Type': raw.type }
         : body !== undefined

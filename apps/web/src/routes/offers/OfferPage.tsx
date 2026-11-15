@@ -5,6 +5,7 @@ import {
   formatQty,
   isSentStatus,
   vatLabel,
+  warsawDate,
   type OfferDetail,
   type OfferEvent,
 } from '@wycenka/core';
@@ -81,7 +82,10 @@ function SentView({ offer }: { offer: OfferDetail }) {
   const mutations = useOfferMutations(offer.id);
   const [copied, setCopied] = useState(false);
   const t = offer.totals;
-  const canResend = offer.status !== 'accepted';
+  // Accepted is final; rejected/expired offers are no longer current for the client (server returns 409).
+  const [today] = useState(() => warsawDate(Date.now()));
+  const expired = offer.validUntil !== null && offer.validUntil < today;
+  const canResend = (offer.status === 'sent' || offer.status === 'opened') && !expired;
 
   async function copy() {
     await navigator.clipboard?.writeText(offer.link);

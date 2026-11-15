@@ -1,3 +1,4 @@
+import { warsawMonth } from '@wycenka/core';
 import { offerEvents, offers } from '@wycenka/db';
 import { and, eq } from 'drizzle-orm';
 import { MOCK_RECORDING_MS, MOCK_TRANSCRIPT, mockExtraction } from '../ai/mock';
@@ -63,7 +64,13 @@ export async function processOffer(env: Env, offerId: string, stepDelayMs = 0): 
       ...persistResult(db, updated, result, now),
       db
         .update(offers)
-        .set({ status: 'ready', processingStep: 'priced', processingError: null })
+        // The plan limit counts offers that went through AI processing (docs/01 „Plany”) – not failed runs.
+        .set({
+          status: 'ready',
+          processingStep: 'priced',
+          processingError: null,
+          countedForPlanMonth: row.countedForPlanMonth ?? warsawMonth(now),
+        })
         .where(where),
       db.insert(offerEvents).values({
         id: crypto.randomUUID(),
