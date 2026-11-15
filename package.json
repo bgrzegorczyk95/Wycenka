@@ -16,7 +16,9 @@
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "db:generate": "pnpm --filter @wycenka/db generate",
-    "db:migrate": "pnpm --filter @wycenka/worker db:migrate"
+    "db:migrate": "pnpm --filter @wycenka/worker db:migrate",
+    "deploy:staging": "pnpm build && pnpm --filter @wycenka/worker exec wrangler d1 migrations apply DB --env staging --remote && pnpm --filter @wycenka/worker exec wrangler deploy --env staging",
+    "logs:staging": "pnpm --filter @wycenka/worker exec wrangler tail wycenka-staging --format pretty"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
