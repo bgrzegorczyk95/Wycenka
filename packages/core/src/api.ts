@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { isValidNip, normalizeNip } from './nip';
 import { normalizePlPhone } from './phone';
-import { PricingRuleKind, Scope, Unit } from './schemas';
+import { Scope, Unit, type PricingRuleKind } from './schemas';
 
 /**
  * Request/response shapes shared by the worker (validation) and the web app (forms, types).
