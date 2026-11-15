@@ -1,21 +1,32 @@
 import { Hono } from 'hono';
-import type { Env } from './env';
+import { companyRoutes } from './api/company';
+import { meRoutes } from './api/me';
+import { onboardingRoutes } from './api/onboarding';
+import { createAuth } from './auth';
+import { fail, type AppEnv } from './http';
+import { requireSession } from './session';
 
-export interface ApiError {
-  error: { code: string; message: string };
-}
-
-export const app = new Hono<{ Bindings: Env }>();
+export const app = new Hono<AppEnv>();
 
 app.get('/api/health', (c) => c.json({ ok: true, service: 'wycenka' }));
 
-app.all('/api/*', (c) => c.json<ApiError>({ error: { code: 'not_found', message: 'Nie znaleziono.' } }, 404));
+// Better Auth: phone (SMS) and e-mail one-time codes, sessions in cookies.
+app.on(['GET', 'POST'], '/api/auth/*', (c) => createAuth(c.env).handler(c.req.raw));
+
+app.use('/api/me', requireSession);
+app.use('/api/me/*', requireSession);
+app.use('/api/onboarding/*', requireSession);
+app.use('/api/company', requireSession);
+app.use('/api/company/*', requireSession);
+
+app.route('/api/me', meRoutes);
+app.route('/api/onboarding', onboardingRoutes);
+app.route('/api/company', companyRoutes);
+
+app.all('/api/*', (c) => fail(c, 404, 'not_found', 'Nie znaleziono.'));
 
 app.onError((err, c) => {
   // No request bodies or personal data in logs (RODO).
   console.error('unhandled_error', err.name, err.message);
-  return c.json<ApiError>(
-    { error: { code: 'internal', message: 'Coś poszło nie tak. Spróbuj ponownie za chwilę.' } },
-    500,
-  );
+  return fail(c, 500, 'internal', 'Coś poszło nie tak. Spróbuj ponownie za chwilę.');
 });

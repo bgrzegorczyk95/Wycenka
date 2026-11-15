@@ -8,15 +8,19 @@
     "deploy": "pnpm --filter @wycenka/web build && wrangler deploy",
     "cf-typegen": "wrangler types",
     "db:migrate": "wrangler d1 migrations apply DB --local",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p . && tsc --noEmit -p test"
   },
   "dependencies": {
     "@wycenka/core": "workspace:*",
     "@wycenka/db": "workspace:*",
-    "hono": "^4.13.18"
+    "better-auth": "^1.7.22",
+    "drizzle-orm": "^0.45.4",
+    "hono": "^4.13.18",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261112.1",
+    "@types/node": "^26.6.6",
     "wrangler": "^4.160.1"
   }
 }

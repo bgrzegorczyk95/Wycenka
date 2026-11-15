@@ -35,6 +35,7 @@
 
   "vars": {
     "APP_URL": "http://localhost:5173",
+    "ENVIRONMENT": "development",
     "MOCK_AI": "1",
     "MOCK_PDF": "1",
   },

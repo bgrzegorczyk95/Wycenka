@@ -1,5 +1,12 @@
-# Copy to .dev.vars (never commit .dev.vars). Secrets used from M2 onwards.
-# ANTHROPIC_API_KEY=
-# BETTER_AUTH_SECRET=
+# Copy to .dev.vars (never commit .dev.vars).
+# Generate: node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
+BETTER_AUTH_SECRET=
+
+# Optional in development – without them login codes are printed in the wrangler dev console.
 # SMSAPI_TOKEN=
+# SMSAPI_SENDER=Wycenka
 # RESEND_API_KEY=
+# EMAIL_FROM=Wycenka <no-reply@wycenka.pl>
+
+# Later stages
+# ANTHROPIC_API_KEY=
