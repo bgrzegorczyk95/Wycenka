@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router';
 import { RedirectIfLoggedIn, RequireApp, RequireOnboarding } from './components/guards';
+import { RouteError } from './components/RouteError';
 import { LandingPage } from './routes/LandingPage';
 import { LegalPage } from './routes/LegalPage';
 import { LoginPage } from './routes/LoginPage';
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
   {
     path: '/start',
     element: <RequireOnboarding />,
+    errorElement: <RouteError />,
     children: [
       { index: true, element: <Navigate to="profesja" replace /> },
       {
@@ -35,6 +37,7 @@ export const router = createBrowserRouter([
   },
   {
     element: <RequireApp />,
+    errorElement: <RouteError />,
     children: [
       {
         lazy: () => import('./components/AppLayout').then((m) => ({ Component: m.AppLayout })),
@@ -46,6 +49,10 @@ export const router = createBrowserRouter([
           {
             path: '/oferty/nowa',
             lazy: () => import('./routes/offers/NewOfferPage').then((m) => ({ Component: m.NewOfferPage })),
+          },
+          {
+            path: '/oferty/oczekujace',
+            lazy: () => import('./routes/offers/PendingPage').then((m) => ({ Component: m.PendingPage })),
           },
           {
             path: '/oferty/:id',

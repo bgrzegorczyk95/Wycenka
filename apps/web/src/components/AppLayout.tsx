@@ -1,7 +1,10 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { FileText, List, User } from 'lucide-react';
-import type { ComponentType } from 'react';
+import { useEffect, type ComponentType } from 'react';
 import { NavLink, Outlet } from 'react-router';
+import { OFFERS_KEY } from '../lib/offers';
 import { useMe } from '../lib/session';
+import { startAutoSync } from '../offline/autoSync';
 
 interface NavItem {
   to: string;
@@ -17,6 +20,22 @@ const navItems: NavItem[] = [
 ];
 
 export function AppLayout() {
+  const queryClient = useQueryClient();
+  // Screens needed without signal are fetched now, so they open later at the client's even if offline
+  // (the service worker covers the next app starts).
+  useEffect(() => {
+    void import('../routes/offers/NewOfferPage');
+    void import('../routes/offers/PendingPage');
+    void import('../routes/offers/OfferPage');
+  }, []);
+  // Offline queue: send recordings waiting on the phone (start, back online, foreground, every 30 s).
+  useEffect(
+    () =>
+      startAutoSync((r) => {
+        if (r.sent.length) void queryClient.invalidateQueries({ queryKey: OFFERS_KEY });
+      }),
+    [queryClient],
+  );
   return (
     <div className="min-h-dvh lg:flex">
       <Sidebar />

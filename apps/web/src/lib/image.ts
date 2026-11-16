@@ -23,6 +23,28 @@ export async function squareLogo(file: File): Promise<Blob> {
   );
 }
 
+const PHOTO_MAX_SIDE = 1600;
+
+/**
+ * Visit photo for the offer (docs/02): scaled to max 1600 px, JPEG 0,8, upright. Re-encoding through a
+ * canvas drops EXIF – including the GPS location of the client's home.
+ */
+export async function compressPhoto(file: File): Promise<ArrayBuffer> {
+  const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+  const scale = Math.min(1, PHOTO_MAX_SIDE / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Canvas not supported');
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  const blob = await new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/jpeg', 0.8),
+  );
+  return blob.arrayBuffer();
+}
+
 /** „Usługi Glazurnicze Nowak” → „UN” (first and last word). */
 export function initials(name: string): string {
   const words = name.trim().split(/\s+/).filter(Boolean);

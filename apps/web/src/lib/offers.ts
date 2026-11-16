@@ -1,6 +1,5 @@
 import type {
   AddOfferItemInput,
-  CreateOfferInput,
   GeometryInput,
   OfferDetail,
   OfferItemPatch,
@@ -31,22 +30,6 @@ export function useOffer(id: string) {
     queryKey: offerKey(id),
     queryFn: () => api<OfferDetail>(`/api/offers/${id}`),
     refetchInterval: (q) => (q.state.data?.status === 'processing' ? 2000 : false),
-  });
-}
-
-export function useCreateOffer() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async ({ input, process }: { input: CreateOfferInput; process: boolean }) => {
-      const created = await api<OfferDetail>('/api/offers', { method: 'POST', body: input });
-      return process
-        ? api<OfferDetail>(`/api/offers/${created.id}/process`, { method: 'POST', body: {} })
-        : created;
-    },
-    onSuccess: (offer) => {
-      queryClient.setQueryData(offerKey(offer.id), offer);
-      void queryClient.invalidateQueries({ queryKey: OFFERS_KEY, exact: true });
-    },
   });
 }
 

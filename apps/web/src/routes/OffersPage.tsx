@@ -7,6 +7,7 @@ import { PageHeader } from '../components/PageHeader';
 import { StatusPill } from '../components/StatusPill';
 import { isDraftStatus, useOffers } from '../lib/offers';
 import { useMe } from '../lib/session';
+import { useWaitingOffers } from '../offline/autoSync';
 
 function OfferCard({ offer }: { offer: OfferListItem }) {
   const draft = isDraftStatus(offer.status);
@@ -37,6 +38,7 @@ function OfferCard({ offer }: { offer: OfferListItem }) {
 export function OffersPage() {
   const { data: me } = useMe();
   const { data: offers, isPending, isError, refetch } = useOffers();
+  const waiting = useWaitingOffers() ?? [];
   const navigate = useNavigate();
   const newOffer = () => navigate('/oferty/nowa');
 
@@ -54,6 +56,22 @@ export function OffersPage() {
         }
       />
       <div className="flex flex-1 flex-col px-5 lg:px-0">
+        {waiting.length > 0 && (
+          <Link
+            to="/oferty/oczekujace"
+            className="mb-4 flex items-center justify-between gap-3 rounded-[14px] border border-warn-line bg-warn-bg px-4 py-3.5 lg:max-w-[720px]"
+          >
+            <span>
+              <span className="block text-[17px] font-semibold">
+                {waiting.length === 1
+                  ? waiting[0]!.client.name || 'Oględziny'
+                  : `${waiting.length} oględziny`}
+              </span>
+              <span className="block text-[15px] text-warn">Czeka w telefonie na wysłanie</span>
+            </span>
+            <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-warn">Czeka</span>
+          </Link>
+        )}
         {isPending ? (
           <FullPageMessage>Wczytywanie ofert…</FullPageMessage>
         ) : isError ? (
@@ -64,7 +82,7 @@ export function OffersPage() {
           >
             Nie udało się wczytać ofert. Spróbuj ponownie
           </button>
-        ) : offers.length === 0 ? (
+        ) : offers.length === 0 && waiting.length === 0 ? (
           <section className="flex flex-col items-center gap-4 rounded-card border border-line bg-surface px-6 py-10 text-center">
             <p className="m-0 max-w-[320px] text-[15px] leading-[22px] text-ink-2">
               Nie masz jeszcze żadnej oferty. AI ułoży pozycje z Twojego cennika. Ceny zawsze sprawdzasz Ty.
