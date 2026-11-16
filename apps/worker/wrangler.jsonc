@@ -62,7 +62,7 @@
           "migrations_dir": "../../packages/db/migrations",
         },
       ],
-      // R2 is not enabled on the account yet – logo upload is off until "r2_buckets" is added here.
+      "r2_buckets": [{ "binding": "FILES", "bucket_name": "wycenka-files-staging", "jurisdiction": "eu" }],
       "queues": {
         "producers": [{ "binding": "JOBS", "queue": "wycenka-jobs-staging" }],
         "consumers": [
