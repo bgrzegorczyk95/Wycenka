@@ -97,7 +97,41 @@ export interface OfferDetail {
   acceptedAt: number | null;
   createdAt: number;
   events: OfferEvent[];
+  attachments: OfferAttachment[];
 }
+
+export interface OfferAttachment {
+  id: string;
+  kind: 'audio' | 'photo';
+  mime: string;
+  durationMs: number | null;
+  caption: string | null;
+  uploaded: boolean;
+}
+
+/** docs/05 „Koszty i limity”: max 5 min of recordings and 10 photos per offer. */
+export const MAX_RECORDING_MS = 5 * 60 * 1000;
+export const MAX_PHOTOS = 10;
+export const MAX_AUDIO_BYTES = 30 * 1024 * 1024;
+export const MAX_PHOTO_BYTES = 6 * 1024 * 1024;
+
+export const OfferFileInput = z.object({
+  /** Generated on the phone – the upload URL uses it, so retries are idempotent. */
+  fileId: z.uuid(),
+  kind: z.enum(['audio', 'photo']),
+  mime: z
+    .string()
+    .regex(/^(audio|image)\/[\w.+-]+(;.*)?$/, 'Nieobsługiwany typ pliku.')
+    .max(100),
+  durationMs: z.number().int().nonnegative().max(MAX_RECORDING_MS).nullable().optional(),
+  caption: z
+    .preprocess(
+      (v) => (typeof v === 'string' && v.trim() === '' ? null : v),
+      z.string().trim().max(40).nullable(),
+    )
+    .optional(),
+});
+export type OfferFileInput = z.input<typeof OfferFileInput>;
 
 const emptyToNull = (v: unknown) => (typeof v === 'string' && v.trim() === '' ? null : v);
 const optionalText = (max: number) =>
@@ -112,6 +146,21 @@ export const CreateOfferInput = z.object({
     address: optionalText(200),
   }),
   title: optionalText(60),
+  /** Recordings and photos from the visit; uploaded separately (PUT /api/offers/:id/files/:fileId). */
+  files: z
+    .array(OfferFileInput)
+    .default([])
+    .refine((files) => files.filter((f) => f.kind === 'photo').length <= MAX_PHOTOS, {
+      message: `Najwyżej ${MAX_PHOTOS} zdjęć na ofertę.`,
+    })
+    .refine(
+      (files) =>
+        files.reduce((sum, f) => sum + (f.kind === 'audio' ? (f.durationMs ?? 0) : 0), 0) <= MAX_RECORDING_MS,
+      { message: 'Nagrania mogą trwać łącznie najwyżej 5 minut.' },
+    )
+    .refine((files) => files.every((f) => (f.kind === 'audio') === f.mime.startsWith('audio/')), {
+      message: 'Nieobsługiwany typ pliku.',
+    }),
 });
 export type CreateOfferInput = z.input<typeof CreateOfferInput>;
 

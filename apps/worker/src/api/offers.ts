@@ -3,6 +3,8 @@ import {
   AnswersInput,
   CreateOfferInput,
   GeometryInput,
+  MAX_AUDIO_BYTES,
+  MAX_PHOTO_BYTES,
   OfferItemPatch,
   OfferPatch,
   SendInput,
@@ -14,8 +16,8 @@ import {
   type OfferItemOverride,
   type SendResponse,
 } from '@wycenka/core';
-import { clients, companies, offerEvents, offers, priceListItems } from '@wycenka/db';
-import { and, desc, eq, isNull, sql } from 'drizzle-orm';
+import { attachments, clients, companies, offerEvents, offers, priceListItems } from '@wycenka/db';
+import { and, count, desc, eq, isNull, sql } from 'drizzle-orm';
 import type { BatchItem } from 'drizzle-orm/batch';
 import { Hono, type Context } from 'hono';
 import { mockExtraction } from '../ai/mock';
@@ -25,6 +27,7 @@ import {
   DEFAULT_OFFER_TITLE,
   computeOffer,
   emptyExtraction,
+  fileKey,
   loadOffer,
   persistResult,
   takeSnapshot,
@@ -153,6 +156,19 @@ export const offerRoutes = new Hono<AppEnv>()
       }),
       db.insert(offers).values(row),
       db.insert(offerEvents).values(event(row as OfferRow, 'created')),
+      // Files are registered now and uploaded one by one (offline queue on the phone).
+      ...input.files.map((f) =>
+        db.insert(attachments).values({
+          id: f.fileId,
+          offerId: row.id,
+          companyId,
+          kind: f.kind,
+          r2Key: fileKey(companyId, row.id, f.fileId),
+          mime: f.mime,
+          durationMs: f.durationMs ?? null,
+          caption: f.caption ?? null,
+        }),
+      ),
     ]);
     const created = (await loadOffer(db, companyId, row.id))!;
     return c.json(await toDetail(db, created, c.env.APP_URL), 201);
@@ -182,10 +198,60 @@ export const offerRoutes = new Hono<AppEnv>()
     );
   })
 
+  /** Upload of a registered recording/photo (body = file). Idempotent: a retry overwrites the same key. */
+  .put('/:id/files/:fileId', async (c) => {
+    const row = await editable(c);
+    if (row instanceof Response) return row;
+    if (!c.env.FILES) return fail(c, 503, 'files_unavailable', 'Wysyłanie plików jest chwilowo niedostępne.');
+    const { db, companyId } = c.var;
+    const file = await db
+      .select()
+      .from(attachments)
+      .where(
+        and(
+          eq(attachments.id, c.req.param('fileId')),
+          eq(attachments.offerId, row.id),
+          eq(attachments.companyId, companyId),
+        ),
+      )
+      .get();
+    if (!file) return fail(c, 404, 'not_found', 'Nie ma takiego pliku w ofercie.');
+    const type = (c.req.header('content-type') ?? '').split(';')[0]!.trim();
+    if (!type.startsWith(file.kind === 'audio' ? 'audio/' : 'image/')) {
+      return fail(c, 415, 'file_type', 'Nieobsługiwany typ pliku.');
+    }
+    const max = file.kind === 'audio' ? MAX_AUDIO_BYTES : MAX_PHOTO_BYTES;
+    if (Number(c.req.header('content-length') ?? 0) > max)
+      return fail(c, 413, 'file_size', 'Plik jest za duży.');
+    const body = await c.req.arrayBuffer();
+    if (body.byteLength === 0) return fail(c, 400, 'file_empty', 'Plik jest pusty.');
+    if (body.byteLength > max) return fail(c, 413, 'file_size', 'Plik jest za duży.');
+    await c.env.FILES.put(file.r2Key, body, { httpMetadata: { contentType: file.mime } });
+    await db
+      .update(attachments)
+      .set({ uploadedAt: Date.now() })
+      .where(and(eq(attachments.id, file.id), eq(attachments.companyId, companyId)));
+    return c.json({ id: file.id, uploaded: true });
+  })
+
   /** Starts AI processing (queue). Until M5 only MOCK_AI is available. */
   .post('/:id/process', async (c) => {
     const row = await editable(c);
     if (row instanceof Response) return row;
+    const pending = await c.var.db
+      .select({ n: count() })
+      .from(attachments)
+      .where(
+        and(
+          eq(attachments.offerId, row.id),
+          eq(attachments.companyId, row.companyId),
+          isNull(attachments.uploadedAt),
+        ),
+      )
+      .get();
+    if ((pending?.n ?? 0) > 0) {
+      return fail(c, 409, 'files_pending', 'Nagranie i zdjęcia jeszcze się wysyłają. Spróbuj za chwilę.');
+    }
     if (c.env.MOCK_AI !== '1') {
       return fail(
         c,

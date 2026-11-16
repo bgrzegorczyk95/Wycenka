@@ -7,6 +7,7 @@ import {
   type PriceOfferResult,
 } from '@wycenka/core';
 import {
+  attachments,
   clients,
   offerEvents,
   offerItems,
@@ -153,6 +154,26 @@ export function offerLink(appUrl: string, token: string | null): string {
   return `${appUrl.replace(/\/$/, '')}/o/${token ?? ''}`;
 }
 
+/** R2 key of a recording/photo – scoped by company and offer. */
+export function fileKey(companyId: string, offerId: string, fileId: string): string {
+  return `offers/${companyId}/${offerId}/${fileId}`;
+}
+
+export async function loadAttachments(db: Db, row: Pick<OfferRow, 'id' | 'companyId'>) {
+  return db
+    .select()
+    .from(attachments)
+    .where(
+      and(
+        eq(attachments.offerId, row.id),
+        eq(attachments.companyId, row.companyId),
+        isNull(attachments.deletedAt),
+      ),
+    )
+    .orderBy(asc(attachments.id))
+    .all();
+}
+
 export async function toDetail(db: Db, row: OfferRow, appUrl: string): Promise<OfferDetail> {
   const result = computeOffer(row);
   const client = await loadClient(db, row);
@@ -162,6 +183,7 @@ export async function toDetail(db: Db, row: OfferRow, appUrl: string): Promise<O
     .where(and(eq(offerEvents.offerId, row.id), eq(offerEvents.companyId, row.companyId)))
     .orderBy(asc(offerEvents.createdAt))
     .all();
+  const files = await loadAttachments(db, row);
   return {
     id: row.id,
     number: row.number,
@@ -208,6 +230,14 @@ export async function toDetail(db: Db, row: OfferRow, appUrl: string): Promise<O
       createdAt: e.createdAt,
       // Client data (question text, IP hash) is shown only where needed.
       payload: e.type === 'question' ? (e.payload as Record<string, unknown>) : null,
+    })),
+    attachments: files.map((f) => ({
+      id: f.id,
+      kind: f.kind,
+      mime: f.mime,
+      durationMs: f.durationMs,
+      caption: f.caption,
+      uploaded: f.uploadedAt !== null,
     })),
   };
 }
